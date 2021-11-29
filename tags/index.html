@@ -80,10 +80,12 @@
 
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="日夜梦游备忘记">
-<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:title" content="tags">
+<meta property="og:url" content="http://example.com/tags/index.html">
 <meta property="og:site_name" content="日夜梦游备忘记">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-11-29T03:08:28.000Z">
+<meta property="article:modified_time" content="2021-11-29T03:08:28.761Z">
 <meta property="article:author" content="日夜梦游">
 <meta name="twitter:card" content="summary">
 
@@ -115,13 +117,13 @@
 
 
 
-  <link rel="canonical" href="http://example.com/"/>
+  <link rel="canonical" href="http://example.com/tags/"/>
 
 
 
 
 
-  <title>日夜梦游备忘记</title>
+  <title>tags | 日夜梦游备忘记</title>
   
 
 
@@ -140,8 +142,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -234,149 +235,37 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/11/27/hexo+github%E6%90%AD%E5%BB%BAblog/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="日夜梦游备忘记">
-    </span>
-
     
+    
+    <div class="post-block page">
       <header class="post-header">
 
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2021/11/27/hexo+github%E6%90%AD%E5%BB%BAblog/" itemprop="url">blog搭建过程备忘.md</a></h1>
-        
+	<h1 class="post-title" itemprop="name headline">tags</h1>
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-11-27T22:39:48+08:00">
-                2021-11-27
-              </time>
-            
 
-            
 
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+</header>
 
       
       
-
       
+      <div class="post-body">
+        
         
           
-            <p>本地环境配置参考了<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000017986794">blog</a></p>
-<h2 id="本地环境配置"><a href="#本地环境配置" class="headerlink" title="本地环境配置"></a>本地环境配置</h2><h3 id="NodeJS"><a href="#NodeJS" class="headerlink" title="NodeJS"></a>NodeJS</h3><blockquote>
-<p>Hexo 基于Node.js驱动</p>
-</blockquote>
-<h3 id="git"><a href="#git" class="headerlink" title="git"></a>git</h3><h3 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git version</span><br><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
-
-<h3 id="Hexo安装及配置"><a href="#Hexo安装及配置" class="headerlink" title="Hexo安装及配置"></a>Hexo安装及配置</h3><p><code>npm install -g hexo-cli</code>  </p>
-<h4 id="如果安装时发生代理错误：FetchError"><a href="#如果安装时发生代理错误：FetchError" class="headerlink" title="如果安装时发生代理错误：FetchError"></a>如果安装时发生代理错误：FetchError</h4><p>换源：<code>npm config set registry https://registry.npm.taobao.org</code><br>清除代理： <code>npm config set proxy null</code>; <code>npm config set https-proxy null</code></p>
-<p>安装完成后，执行下列命令，在指定文件夹中新建文件；</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo init myblog</span><br><span class="line">cd myblog</span><br><span class="line">npm install </span><br></pre></td></tr></table></figure>
-<p>生成的文件夹目录如下；</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── _config.yml # 网站的配置信息，您可以在此配置大部分的参数。 </span><br><span class="line">├── package.json</span><br><span class="line">├── scaffolds # 模版文件夹</span><br><span class="line">├── source  # 资源文件夹，除 _posts 文件，其他以下划线_开头的文件或者文件夹不会被编译打包到public文件夹</span><br><span class="line">|   ├── _drafts # 草稿文件</span><br><span class="line">|   └── _posts # 文章Markdowm文件 </span><br><span class="line">└── themes  # 主题文件夹</span><br></pre></td></tr></table></figure>
-<p>生成完成后，运行<code>hexo s</code>，在浏览器打开<a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000</a> 即可预览效果</p>
-<h2 id="部署到Github"><a href="#部署到Github" class="headerlink" title="部署到Github"></a>部署到Github</h2><h3 id="更改-cong-yml-配置文件配置参数"><a href="#更改-cong-yml-配置文件配置参数" class="headerlink" title="更改_cong.yml 配置文件配置参数"></a>更改_cong.yml 配置文件配置参数</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">    type: git </span><br><span class="line">    repo: </span><br><span class="line">        github: https://github.com/QQQ27/QQQ27.github.io.git</span><br><span class="line">    branch: master</span><br></pre></td></tr></table></figure>
-<h3 id="安装部署插件"><a href="#安装部署插件" class="headerlink" title="安装部署插件"></a>安装部署插件</h3><p><code>npm install hexo-deployer-git --save</code></p>
-<h3 id="部署上传"><a href="#部署上传" class="headerlink" title="部署上传"></a>部署上传</h3><p><code>hexo g -d</code><br>生成上传完成后，访问<a target="_blank" rel="noopener" href="https://qqq27.github.io/">https://QQQ27.github.io</a> 即可看到搭建的博客主页。</p>
-<h2 id="更改博客主题"><a href="#更改博客主题" class="headerlink" title="更改博客主题"></a>更改博客主题</h2><p>以next主题为例，克隆next项目到hexo根目录的theme/next文件中，修改hexo根目录的_config.yml配置文件中的theme为next即可。修改完成后，可以使用```hexo s –debug``命令验证。</p>
-<h3 id="debug没有出错，但是博客页面无法正常显示？"><a href="#debug没有出错，但是博客页面无法正常显示？" class="headerlink" title="debug没有出错，但是博客页面无法正常显示？"></a>debug没有出错，但是博客页面无法正常显示？</h3><p>由于hexo在5.0版本后删除了swig，需要手动安装：<code>npm i hexo-render-swig</code>。</p>
-<p><a target="_blank" rel="noopener" href="http://theme-next.iissnan.com/">next 主页</a><br><a target="_blank" rel="noopener" href="https://github.com/iissnan/hexo-theme-next">next github主页</a><br><a target="_blank" rel="noopener" href="https://www.techgrow.cn/posts/755ff30d.html">参考blog</a></p>
-
-          
         
+      </div>
+      
+      
       
     </div>
     
     
     
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
 
 
           </div>
@@ -384,6 +273,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -585,6 +478,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
