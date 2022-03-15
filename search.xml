@@ -27,4 +27,56 @@
         <tag>hexo</tag>
       </tags>
   </entry>
+  <entry>
+    <title></title>
+    <url>/2021/11/29/anaconda%E5%A1%AB%E5%9D%91/</url>
+    <content><![CDATA[<h3 id="conda-安装库时出现proxy问题"><a href="#conda-安装库时出现proxy问题" class="headerlink" title="conda 安装库时出现proxy问题"></a>conda 安装库时出现proxy问题</h3><h4 id="方法一：关闭本机网络代理"><a href="#方法一：关闭本机网络代理" class="headerlink" title="方法一：关闭本机网络代理"></a>方法一：关闭本机网络代理</h4><h4 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h4><p>修改~目录下的<code>.condarc</code>文件，添加或者修改<code>proxy_server</code>参数，添加格式如下</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">proxy_servers:</span><br><span class="line">    http: http://127.0.0.1:8888</span><br><span class="line">    https: http://127.0.0.1:8888</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>! https: http 而不是https</p>
+</blockquote>
+<p>配置socks5代理：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">proxy_servers:</span><br><span class="line">  http: socks5://127.0.0.1:1089</span><br><span class="line">  https: socks5://127.0.0.1:1089</span><br></pre></td></tr></table></figure>
+<p>注意不要用<code>tab</code>键，而是使用四个空格，<code>https</code>和<code>http</code>后有一空格。代理ip地址为本机的<code>http</code>和<code>https</code>代理ip及端口，而不是远程服务器的ip和端口。</p>
+<h4 id="方法三"><a href="#方法三" class="headerlink" title="方法三"></a>方法三</h4><p><code>env  | grep -i &quot;_PROXY&quot;</code> 查看环境变量<br><code>unset http_proxy &amp;&amp; https_proxy &amp;&amp; HTTP_PROXY &amp;&amp; HTTPS_PROXY</code>  并且<code>export all_proxy=&quot;socks://127.0.01.:1088&quot; </code>，注释<code>.condarc</code>文件中的proxy_server设置,即可。<br>未关闭本机网络代理。</p>
+<blockquote>
+<p>不确定<code>unset...</code>和<code>export...</code>两个命令之间是否存在关联 </p>
+</blockquote>
+]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2021/12/13/%E5%BE%AE%E8%BD%AF%E5%95%86%E5%BA%97%E7%BD%91%E7%BB%9C%E5%8E%9F%E5%9B%A0%E6%97%A0%E6%B3%95%E6%89%93%E5%BC%80/</url>
+    <content><![CDATA[<p>microsoft store网络原因无法打开<br>开始菜单–&gt;网络和Internet–&gt;代理–&gt;开启自动检测设置，不使用设置脚本</p>
+]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2021/11/29/linux%20%E8%BF%81%E7%A7%BBanaconda%20%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/</url>
+    <content><![CDATA[<blockquote>
+<p>两台计算机均为ubuntu系统，远程服务器无法使用http协议<br> 两台不同操作系统的环境迁移使用yaml文件</p>
+</blockquote>
+<h3 id="conda-clone"><a href="#conda-clone" class="headerlink" title="conda clone"></a>conda clone</h3><ul>
+<li>本地计算机，直接clone本地文件夹 /anaconda3/pkgs 和/anaconda3/envs/my_env至远程服务器的相应文件夹；</li>
+<li>远程服务器上，<code>conda create -n my_env --clone  my_env_path --offline</code> 发生HTTPERROR</li>
+</ul>
+<blockquote>
+<p>设定了 –offline 安装依然发生HTTP ERROR，为conda 版本bug</p>
+</blockquote>
+<h4 id="conda-pack-and-unpack-有效"><a href="#conda-pack-and-unpack-有效" class="headerlink" title="conda pack and unpack(有效)"></a>conda pack and unpack(有效)</h4><ul>
+<li>本地计算机上，在base环境下（保证各个子环境都可以使用）<code>conda install  - c conda-forge conda-pack</code>或者<code>pip install conda-pack</code></li>
+<li><code>conda activate my_env</code>，打包本地虚拟环境 <code>conda-pack</code> 得到my_env.tar.gz，讲my_env.tar.gz传输到远程服务器</li>
+<li>在远程服务器上解压，<code>tar -xf my_env.tar.gz -C ~/anaconda3/envs/my_env</code>，激活虚拟环境 <code>source ~/anaconda3/envs/my_env/bin/activate</code></li>
+</ul>
+<blockquote>
+<p>解压过程出现<code>tar my_env.tar.gz ~/anaconda3/envs/my_env</code> 出现<br>tar: xx: Not FOund in archive ; tar: Exiting with failure status due to previous errors 错误<br>原因是因为压缩文件使用的相对路径，在当前目录下找不到/usr目录，通过使用<code>-C</code>指定解压目录可解决此问题<br><code>tar -zxvf my_env.tar.gz -C ~/anaconda3/envs/my_env</code></p>
+</blockquote>
+]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2022/03/08/git%E5%88%9B%E5%BB%BA%E5%88%86%E6%94%AF%E5%B9%B6%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6/</url>
+    <content><![CDATA[<p>git clone <a href="http://github.com/qqq27/Project.git">http://github.com/qqq27/Project.git</a><br>git branch lq  # 创建一个名为lq的新分支<br>git checkout branch lq<br>cd folder<br>git add .<br>git commit -m “  “<br>git push origin lq<br>git branch -d lq ## 本地删除分支<br>git push origin :lq ## 删除远程分支</p>
+]]></content>
+  </entry>
 </search>
