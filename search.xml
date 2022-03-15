@@ -29,7 +29,7 @@
       </tags>
   </entry>
   <entry>
-    <title></title>
+    <title>anaconda使用问题汇总</title>
     <url>/2021/11/29/anaconda%E5%A1%AB%E5%9D%91/</url>
     <content><![CDATA[<h3 id="conda-安装库时出现proxy问题"><a href="#conda-安装库时出现proxy问题" class="headerlink" title="conda 安装库时出现proxy问题"></a>conda 安装库时出现proxy问题</h3><h4 id="方法一：关闭本机网络代理"><a href="#方法一：关闭本机网络代理" class="headerlink" title="方法一：关闭本机网络代理"></a>方法一：关闭本机网络代理</h4><h4 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h4><p>修改~目录下的<code>.condarc</code>文件，添加或者修改<code>proxy_server</code>参数，添加格式如下</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">proxy_servers:</span><br><span class="line">    http: http://127.0.0.1:8888</span><br><span class="line">    https: http://127.0.0.1:8888</span><br></pre></td></tr></table></figure>
@@ -44,12 +44,19 @@
 <p>不确定<code>unset...</code>和<code>export...</code>两个命令之间是否存在关联 </p>
 </blockquote>
 ]]></content>
+      <tags>
+        <tag>anaconda</tag>
+        <tag>conda</tag>
+      </tags>
   </entry>
   <entry>
-    <title></title>
-    <url>/2021/12/13/%E5%BE%AE%E8%BD%AF%E5%95%86%E5%BA%97%E7%BD%91%E7%BB%9C%E5%8E%9F%E5%9B%A0%E6%97%A0%E6%B3%95%E6%89%93%E5%BC%80/</url>
+    <title>微软商店无法打开</title>
+    <url>/2022/01/30/%E5%BE%AE%E8%BD%AF%E5%95%86%E5%BA%97%E7%BD%91%E7%BB%9C%E5%8E%9F%E5%9B%A0%E6%97%A0%E6%B3%95%E6%89%93%E5%BC%80/</url>
     <content><![CDATA[<p>microsoft store网络原因无法打开<br>开始菜单–&gt;网络和Internet–&gt;代理–&gt;开启自动检测设置，不使用设置脚本</p>
 ]]></content>
+      <tags>
+        <tag>微软商店</tag>
+      </tags>
   </entry>
   <entry>
     <title></title>
@@ -75,9 +82,21 @@
 ]]></content>
   </entry>
   <entry>
-    <title></title>
-    <url>/2022/03/08/git%E5%88%9B%E5%BB%BA%E5%88%86%E6%94%AF%E5%B9%B6%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6/</url>
-    <content><![CDATA[<p>git clone <a href="http://github.com/qqq27/Project.git">http://github.com/qqq27/Project.git</a><br>git branch lq  # 创建一个名为lq的新分支<br>git checkout branch lq<br>cd folder<br>git add .<br>git commit -m “  “<br>git push origin lq<br>git branch -d lq ## 本地删除分支<br>git push origin :lq ## 删除远程分支</p>
+    <title>git 创建分支并上传文件</title>
+    <url>/2022/01/02/git%E5%88%9B%E5%BB%BA%E5%88%86%E6%94%AF%E5%B9%B6%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6/</url>
+    <content><![CDATA[<pre><code>git clone http://github.com/qqq27/Project.git
+git branch lq  # 创建一个名为lq的新分支
+git checkout branch lq
+cd folder
+git add .
+git commit -m &quot;  &quot;
+git push origin lq
+git branch -d lq ## 本地删除分支
+git push origin :lq ## 删除远程分支```
+</code></pre>
 ]]></content>
+      <tags>
+        <tag>git</tag>
+      </tags>
   </entry>
 </search>
