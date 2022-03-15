@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="en">
+<html class="theme-next pisces use-motion" lang="en">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -81,13 +81,13 @@
 
 <meta name="description" content="本地环境配置参考了blog 本地环境配置NodeJS Hexo 基于Node.js驱动  git验证123git versionnode -vnpm -v  Hexo安装及配置npm install -g hexo-cli   如果安装时发生代理错误：FetchError换源：npm config set registry https:&#x2F;&#x2F;registry.npm.taobao.org清除代理：">
 <meta property="og:type" content="article">
-<meta property="og:title" content="blog搭建过程备忘.md">
+<meta property="og:title" content="blog搭建过程备忘">
 <meta property="og:url" content="http://example.com/2021/11/27/hexo+github%E6%90%AD%E5%BB%BAblog/index.html">
 <meta property="og:site_name" content="日夜梦游备忘记">
 <meta property="og:description" content="本地环境配置参考了blog 本地环境配置NodeJS Hexo 基于Node.js驱动  git验证123git versionnode -vnpm -v  Hexo安装及配置npm install -g hexo-cli   如果安装时发生代理错误：FetchError换源：npm config set registry https:&#x2F;&#x2F;registry.npm.taobao.org清除代理：">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-11-27T14:39:48.000Z">
-<meta property="article:modified_time" content="2022-03-15T12:26:49.066Z">
+<meta property="article:modified_time" content="2022-03-15T12:58:15.258Z">
 <meta property="article:author" content="日夜梦游">
 <meta property="article:tag" content="hexo">
 <meta property="article:tag" content="博客搭建">
@@ -99,9 +99,9 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '',
-    scheme: 'Muse',
+    scheme: 'Pisces',
     version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -127,7 +127,7 @@
 
 
 
-  <title>blog搭建过程备忘.md | 日夜梦游备忘记</title>
+  <title>blog搭建过程备忘 | 日夜梦游备忘记</title>
   
 
 
@@ -198,6 +198,16 @@
               <i class="menu-item-icon fa fa-fw fa-fa fa-tags"></i> <br />
             
             Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
           </a>
         </li>
       
@@ -295,7 +305,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">blog搭建过程备忘.md</h1>
+          <h1 class="post-title" itemprop="name headline">blog搭建过程备忘</h1>
         
 
         <div class="post-meta">
@@ -317,6 +327,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/hexo/" itemprop="url" rel="index">
+                    <span itemprop="name">hexo</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -396,14 +428,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2021/10/04/linux%20%E8%BF%81%E7%A7%BBanaconda%20%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/" rel="next" title="ubuntu 迁移conda虚拟环境">
+                <i class="fa fa-chevron-left"></i> ubuntu 迁移conda虚拟环境
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2021/11/29/linux%20%E8%BF%81%E7%A7%BBanaconda%20%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
+              <a href="/2021/11/29/anaconda%E5%A1%AB%E5%9D%91/" rel="prev" title="anaconda使用问题汇总">
+                anaconda使用问题汇总 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -488,6 +524,15 @@
             
 
             
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
 
             
               
@@ -504,6 +549,16 @@
 
           
 
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/QQQ27" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
           
 
           
@@ -535,6 +590,13 @@
       <!--/noindex-->
       
 
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
       
 
     </div>
@@ -576,11 +638,6 @@
       </div>
     </footer>
 
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
     
 
     
@@ -658,6 +715,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
