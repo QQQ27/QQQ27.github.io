@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="transformer," />
+  <meta name="keywords" content="Feature Pyramid," />
 
 
 
@@ -79,20 +79,22 @@
 
 
 
-<meta name="description" content="Swin Transformer: Hierarchical Vision Transformer using Shifted Windows(CVPR 2021 Best Paper)(Mcrosoft) 新的计算机视觉网络backbone图像域和语言域的差异  Swin Transformer提出的分层tranformer使用Shifted Windows（滑动窗口）计算特征图。Shifted">
+<meta name="description" content="Feature Pyramid &amp;&amp; GANAn Unsupervised-Learning-Based Approach for Automated Defect Inspection on Textured Surfaces[2018, 91]像素级（8x8邻域作为patch进行重构，得到残差—-全局特征？）二分类任务 网络结构(来源：https:&#x2F;&#x2F;blog.csdn.net">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Swin Transformer">
-<meta property="og:url" content="http://example.com/2021/12/30/SwinTransformer%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:title" content="Feature Pyramid">
+<meta property="og:url" content="http://example.com/2021/12/20/FeaturePyramid/index.html">
 <meta property="og:site_name" content="日夜梦游备忘记">
-<meta property="og:description" content="Swin Transformer: Hierarchical Vision Transformer using Shifted Windows(CVPR 2021 Best Paper)(Mcrosoft) 新的计算机视觉网络backbone图像域和语言域的差异  Swin Transformer提出的分层tranformer使用Shifted Windows（滑动窗口）计算特征图。Shifted">
+<meta property="og:description" content="Feature Pyramid &amp;&amp; GANAn Unsupervised-Learning-Based Approach for Automated Defect Inspection on Textured Surfaces[2018, 91]像素级（8x8邻域作为patch进行重构，得到残差—-全局特征？）二分类任务 网络结构(来源：https:&#x2F;&#x2F;blog.csdn.net">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2021/12/30/SwinTransformer%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/transformer_architecture.png">
-<meta property="article:published_time" content="2021-12-30T15:30:12.000Z">
-<meta property="article:modified_time" content="2022-03-16T08:20:35.036Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20181203175011695.?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hoeV9jc2Ru,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="http://example.com/2021/12/20/FeaturePyramid/MS-FCAE.png">
+<meta property="og:image" content="http://example.com/2021/12/20/FeaturePyramid/FCAE.png">
+<meta property="article:published_time" content="2021-12-20T15:30:12.000Z">
+<meta property="article:modified_time" content="2022-03-16T08:19:20.666Z">
 <meta property="article:author" content="日夜梦游">
-<meta property="article:tag" content="transformer">
+<meta property="article:tag" content="Feature Pyramid">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2021/12/30/SwinTransformer%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/transformer_architecture.png">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20181203175011695.?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hoeV9jc2Ru,size_16,color_FFFFFF,t_70">
 
 
 
@@ -122,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://example.com/2021/12/30/SwinTransformer论文笔记/"/>
+  <link rel="canonical" href="http://example.com/2021/12/20/FeaturePyramid/"/>
 
 
 
 
 
-  <title>Swin Transformer | 日夜梦游备忘记</title>
+  <title>Feature Pyramid | 日夜梦游备忘记</title>
   
 
 
@@ -289,7 +291,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/30/SwinTransformer%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/20/FeaturePyramid/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -306,7 +308,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Swin Transformer</h1>
+          <h1 class="post-title" itemprop="name headline">Feature Pyramid</h1>
         
 
         <div class="post-meta">
@@ -318,8 +320,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-12-30T23:30:12+08:00">
-                2021-12-30
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-12-20T23:30:12+08:00">
+                2021-12-20
               </time>
             
 
@@ -378,25 +380,11 @@
       
 
       
-        <h2 id="Swin-Transformer-Hierarchical-Vision-Transformer-using-Shifted-Windows-CVPR-2021-Best-Paper-Mcrosoft"><a href="#Swin-Transformer-Hierarchical-Vision-Transformer-using-Shifted-Windows-CVPR-2021-Best-Paper-Mcrosoft" class="headerlink" title="Swin Transformer: Hierarchical Vision Transformer using Shifted Windows(CVPR 2021 Best Paper)(Mcrosoft)"></a><a target="_blank" rel="noopener" href="https://github.com/microsoft/Swin-Transformer">Swin Transformer: Hierarchical Vision Transformer using Shifted Windows(CVPR 2021 Best Paper)(Mcrosoft)</a></h2><blockquote>
-<p>新的计算机视觉网络backbone<br>图像域和语言域的差异</p>
-</blockquote>
-<p>Swin Transformer提出的分层tranformer使用Shifted Windows（滑动窗口）计算特征图。Shifted Windows 方案通过将自注意力计算限制在不重叠的本地窗口同时允许跨窗口连接来提高效率。</p>
-<h3 id="Swin-Transformer的网络结构"><a href="#Swin-Transformer的网络结构" class="headerlink" title="Swin Transformer的网络结构"></a>Swin Transformer的网络结构</h3><p><img src="/2021/12/30/SwinTransformer%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/transformer_architecture.png" alt="swin transformer architecture"></p>
-<ul>
-<li><strong>patch partition</strong>: 将图像分割成不重叠的系列块；</li>
-</ul>
-<blockquote>
-<p>its feature is et as a concatenation of the raw pixel RGB values.??</p>
-</blockquote>
-<ul>
-<li><strong>linear embedding</strong>将raw-value的特征映射到固定维度的空间上；</li>
-<li><strong>swin transformer blocks</strong>应用与patch tokens，实现feature transformation;通过将标准的multi-head self attention(MSA)替换为基于shifted windows 的tranformer block构建成。</li>
-<li><strong>patch merging</strong>减少tokens 的数量以产生分层的表征</li>
-</ul>
-<h3 id="Shifted-Window-based-Self-Attention"><a href="#Shifted-Window-based-Self-Attention" class="headerlink" title="Shifted Window based Self-Attention"></a>Shifted Window based Self-Attention</h3><blockquote>
-<p><strong><a target="_blank" rel="noopener" href="https://paperswithcode.com/method/gelu">GELU</a></strong> 高斯误差线性单元(Gaussian Error Linear Uints)，激活函数</p>
-</blockquote>
+        <h2 id="Feature-Pyramid-amp-amp-GAN"><a href="#Feature-Pyramid-amp-amp-GAN" class="headerlink" title="Feature Pyramid &amp;&amp; GAN"></a>Feature Pyramid &amp;&amp; GAN</h2><h3 id="An-Unsupervised-Learning-Based-Approach-for-Automated-Defect-Inspection-on-Textured-Surfaces-2018-91"><a href="#An-Unsupervised-Learning-Based-Approach-for-Automated-Defect-Inspection-on-Textured-Surfaces-2018-91" class="headerlink" title="An Unsupervised-Learning-Based Approach for Automated Defect Inspection on Textured Surfaces[2018, 91]"></a>An Unsupervised-Learning-Based Approach for Automated Defect Inspection on Textured Surfaces[2018, 91]</h3><p>像素级（8x8邻域作为patch进行重构，得到残差—-全局特征？）二分类任务</p>
+<p>网络结构(来源：<a target="_blank" rel="noopener" href="https://blog.csdn.net/hhy_csdn/article/details/84679448#commentBox">https://blog.csdn.net/hhy_csdn/article/details/84679448#commentBox</a>)<br><img src="https://img-blog.csdnimg.cn/20181203175011695.?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hoeV9jc2Ru,size_16,color_FFFFFF,t_70" alt="avatar"></p>
+<h3 id="同组论文-Multiscale-Feature-Clustering-Based-Fully-Convolutional-Autoencoder-for-Fast-Accurate-Visual-Inspection-of-Texture-Surface-Defects-2019-33"><a href="#同组论文-Multiscale-Feature-Clustering-Based-Fully-Convolutional-Autoencoder-for-Fast-Accurate-Visual-Inspection-of-Texture-Surface-Defects-2019-33" class="headerlink" title="(同组论文)Multiscale Feature-Clustering-Based Fully Convolutional Autoencoder for Fast Accurate Visual Inspection of Texture Surface Defects[2019, 33]"></a>(同组论文)Multiscale Feature-Clustering-Based Fully Convolutional Autoencoder for Fast Accurate Visual Inspection of Texture Surface Defects[2019, 33]</h3><h4 id="MS-FCAE-的总体架构"><a href="#MS-FCAE-的总体架构" class="headerlink" title="MS-FCAE 的总体架构"></a>MS-FCAE 的总体架构</h4><p><img src="/2021/12/20/FeaturePyramid/MS-FCAE.png" alt="MS-FCAE"></p>
+<p>MS-FCAE有特征提取网络（几个卷积层）、多尺度FCAE网络哦和结果融合模块做成；<br>FCAE子网由一个编码模块、一个特征聚合模块和一个解码模块组成。</p>
+<p><img src="/2021/12/20/FeaturePyramid/FCAE.png" alt="FCAE"></p>
 
       
     </div>
@@ -414,7 +402,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/transformer/" rel="tag"><i class="fa fa-tag"></i> transformer</a>
+            <a href="/tags/Feature-Pyramid/" rel="tag"><i class="fa fa-tag"></i> Feature Pyramid</a>
           
         </div>
       
@@ -427,8 +415,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2021/12/29/attention_is_all_you_need/" rel="next" title="Attention is All You Need">
-                <i class="fa fa-chevron-left"></i> Attention is All You Need
+              <a href="/2021/12/10/ViT%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" rel="next" title="ViT">
+                <i class="fa fa-chevron-left"></i> ViT
               </a>
             
           </div>
@@ -437,8 +425,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2022/01/02/git%E5%88%9B%E5%BB%BA%E5%88%86%E6%94%AF%E5%B9%B6%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6/" rel="prev" title="git 创建分支并上传文件">
-                git 创建分支并上传文件 <i class="fa fa-chevron-right"></i>
+              <a href="/2021/12/29/attention_is_all_you_need/" rel="prev" title="Attention is All You Need">
+                Attention is All You Need <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -581,7 +569,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Swin-Transformer-Hierarchical-Vision-Transformer-using-Shifted-Windows-CVPR-2021-Best-Paper-Mcrosoft"><span class="nav-number">1.</span> <span class="nav-text">Swin Transformer: Hierarchical Vision Transformer using Shifted Windows(CVPR 2021 Best Paper)(Mcrosoft)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Swin-Transformer%E7%9A%84%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84"><span class="nav-number">1.1.</span> <span class="nav-text">Swin Transformer的网络结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Shifted-Window-based-Self-Attention"><span class="nav-number">1.2.</span> <span class="nav-text">Shifted Window based Self-Attention</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Feature-Pyramid-amp-amp-GAN"><span class="nav-number">1.</span> <span class="nav-text">Feature Pyramid &amp;&amp; GAN</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#An-Unsupervised-Learning-Based-Approach-for-Automated-Defect-Inspection-on-Textured-Surfaces-2018-91"><span class="nav-number">1.1.</span> <span class="nav-text">An Unsupervised-Learning-Based Approach for Automated Defect Inspection on Textured Surfaces[2018, 91]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%8C%E7%BB%84%E8%AE%BA%E6%96%87-Multiscale-Feature-Clustering-Based-Fully-Convolutional-Autoencoder-for-Fast-Accurate-Visual-Inspection-of-Texture-Surface-Defects-2019-33"><span class="nav-number">1.2.</span> <span class="nav-text">(同组论文)Multiscale Feature-Clustering-Based Fully Convolutional Autoencoder for Fast Accurate Visual Inspection of Texture Surface Defects[2019, 33]</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#MS-FCAE-%E7%9A%84%E6%80%BB%E4%BD%93%E6%9E%B6%E6%9E%84"><span class="nav-number">1.2.1.</span> <span class="nav-text">MS-FCAE 的总体架构</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

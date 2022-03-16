@@ -79,20 +79,21 @@
 
 
 
-<meta name="description" content="Swin Transformer: Hierarchical Vision Transformer using Shifted Windows(CVPR 2021 Best Paper)(Mcrosoft) 新的计算机视觉网络backbone图像域和语言域的差异  Swin Transformer提出的分层tranformer使用Shifted Windows（滑动窗口）计算特征图。Shifted">
+<meta name="description" content="Attention is All You Need(google brain) 完全使用注意力机制学习输入输出之间的全局依赖（训练时允许并行计算，规避顺序计算的基本约束）  transformer的模型结构总体结构如下transformer 包括Encoder和Decoder两大块。Encoder部分由$N&#x3D;6$个相同的层组成，每块有两个子层；两个子层分别为multi-head self-atte">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Swin Transformer">
-<meta property="og:url" content="http://example.com/2021/12/30/SwinTransformer%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:title" content="Attention is All You Need">
+<meta property="og:url" content="http://example.com/2021/12/29/attention_is_all_you_need/index.html">
 <meta property="og:site_name" content="日夜梦游备忘记">
-<meta property="og:description" content="Swin Transformer: Hierarchical Vision Transformer using Shifted Windows(CVPR 2021 Best Paper)(Mcrosoft) 新的计算机视觉网络backbone图像域和语言域的差异  Swin Transformer提出的分层tranformer使用Shifted Windows（滑动窗口）计算特征图。Shifted">
+<meta property="og:description" content="Attention is All You Need(google brain) 完全使用注意力机制学习输入输出之间的全局依赖（训练时允许并行计算，规避顺序计算的基本约束）  transformer的模型结构总体结构如下transformer 包括Encoder和Decoder两大块。Encoder部分由$N&#x3D;6$个相同的层组成，每块有两个子层；两个子层分别为multi-head self-atte">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2021/12/30/SwinTransformer%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/transformer_architecture.png">
-<meta property="article:published_time" content="2021-12-30T15:30:12.000Z">
-<meta property="article:modified_time" content="2022-03-16T08:20:35.036Z">
+<meta property="og:image" content="http://example.com/2021/12/29/attention_is_all_you_need/transformer.png">
+<meta property="og:image" content="http://example.com/2021/12/29/attention_is_all_you_need/ScaledDot-ProductAttention.png">
+<meta property="article:published_time" content="2021-12-29T15:30:12.000Z">
+<meta property="article:modified_time" content="2022-03-16T08:18:25.013Z">
 <meta property="article:author" content="日夜梦游">
 <meta property="article:tag" content="transformer">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2021/12/30/SwinTransformer%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/transformer_architecture.png">
+<meta name="twitter:image" content="http://example.com/2021/12/29/attention_is_all_you_need/transformer.png">
 
 
 
@@ -122,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="http://example.com/2021/12/30/SwinTransformer论文笔记/"/>
+  <link rel="canonical" href="http://example.com/2021/12/29/attention_is_all_you_need/"/>
 
 
 
 
 
-  <title>Swin Transformer | 日夜梦游备忘记</title>
+  <title>Attention is All You Need | 日夜梦游备忘记</title>
   
 
 
@@ -289,7 +290,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/30/SwinTransformer%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/29/attention_is_all_you_need/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -306,7 +307,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Swin Transformer</h1>
+          <h1 class="post-title" itemprop="name headline">Attention is All You Need</h1>
         
 
         <div class="post-meta">
@@ -318,8 +319,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-12-30T23:30:12+08:00">
-                2021-12-30
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-12-29T23:30:12+08:00">
+                2021-12-29
               </time>
             
 
@@ -378,25 +379,31 @@
       
 
       
-        <h2 id="Swin-Transformer-Hierarchical-Vision-Transformer-using-Shifted-Windows-CVPR-2021-Best-Paper-Mcrosoft"><a href="#Swin-Transformer-Hierarchical-Vision-Transformer-using-Shifted-Windows-CVPR-2021-Best-Paper-Mcrosoft" class="headerlink" title="Swin Transformer: Hierarchical Vision Transformer using Shifted Windows(CVPR 2021 Best Paper)(Mcrosoft)"></a><a target="_blank" rel="noopener" href="https://github.com/microsoft/Swin-Transformer">Swin Transformer: Hierarchical Vision Transformer using Shifted Windows(CVPR 2021 Best Paper)(Mcrosoft)</a></h2><blockquote>
-<p>新的计算机视觉网络backbone<br>图像域和语言域的差异</p>
-</blockquote>
-<p>Swin Transformer提出的分层tranformer使用Shifted Windows（滑动窗口）计算特征图。Shifted Windows 方案通过将自注意力计算限制在不重叠的本地窗口同时允许跨窗口连接来提高效率。</p>
-<h3 id="Swin-Transformer的网络结构"><a href="#Swin-Transformer的网络结构" class="headerlink" title="Swin Transformer的网络结构"></a>Swin Transformer的网络结构</h3><p><img src="/2021/12/30/SwinTransformer%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/transformer_architecture.png" alt="swin transformer architecture"></p>
-<ul>
-<li><strong>patch partition</strong>: 将图像分割成不重叠的系列块；</li>
+        <h2 id="Attention-is-All-You-Need-google-brain"><a href="#Attention-is-All-You-Need-google-brain" class="headerlink" title="Attention is All You Need(google brain)"></a>Attention is All You Need(google brain)</h2><ul>
+<li>完全使用注意力机制学习输入输出之间的全局依赖（训练时允许并行计算，规避顺序计算的基本约束）</li>
 </ul>
+<h3 id="transformer的模型结构"><a href="#transformer的模型结构" class="headerlink" title="transformer的模型结构"></a>transformer的模型结构</h3><p><strong>总体结构如下</strong><br><img src="/2021/12/29/attention_is_all_you_need/transformer.png" alt="transformer"><br>transformer 包括<strong>Encoder</strong>和<strong>Decoder</strong>两大块。<br><strong>Encoder</strong>部分由$N=6$个相同的层组成，每块有两个子层；两个子层分别为<em>multi-head self-attention mechanism</em>和<em>fully connected feed-forward network</em>；并且两个子层都使用了<em>residual connection</em>和<em>layer normalization</em>，所以每个子层的输出为$LayerNorm(x+SubLayer(x))$。<br><strong>Decoder</strong>部分和<strong>Encoder</strong>相似，也有6个相同的层组成。不同的是，<strong>Decoder</strong>在每层中插入了一个新的子层<em>Multi-Head Attention</em>用于对<strong>Encoder</strong>的输出执行<em>Multi-Head Attention</em>。</p>
 <blockquote>
-<p>its feature is et as a concatenation of the raw pixel RGB values.??</p>
+<p>修改了decoder堆栈中的自注意力子层，以防止位置关注后续位置，确保位置i的预测只能依赖与小于i位置的已知输出?</p>
 </blockquote>
-<ul>
-<li><strong>linear embedding</strong>将raw-value的特征映射到固定维度的空间上；</li>
-<li><strong>swin transformer blocks</strong>应用与patch tokens，实现feature transformation;通过将标准的multi-head self attention(MSA)替换为基于shifted windows 的tranformer block构建成。</li>
-<li><strong>patch merging</strong>减少tokens 的数量以产生分层的表征</li>
+<h3 id="Attention"><a href="#Attention" class="headerlink" title="Attention"></a>Attention</h3><h4 id="transformer-提出了一种特殊的注意力机制-Scaled-Dot-Product-Attention"><a href="#transformer-提出了一种特殊的注意力机制-Scaled-Dot-Product-Attention" class="headerlink" title="transformer 提出了一种特殊的注意力机制 Scaled Dot-Product Attention"></a>transformer 提出了一种特殊的注意力机制 Scaled Dot-Product Attention</h4><blockquote>
+<p>两种常用的注意力函数为<em>additive attention</em>和<em>dot-product(multi-plicative) attention</em>; </p>
+</blockquote>
+<p><em>scaled dot-product attention</em>只比<em>dot-product attention</em>多了个缩放因子$\frac{1}{\sqrt{d_k}}$;添加$\frac{1}{\sqrt{d_k}}$是由于作者怀疑在$k$较大时，<em>dot-product</em>的量级变大，会将<em>softmax</em>函数推向梯度较小的区间</p>
+<p><img src="/2021/12/29/attention_is_all_you_need/ScaledDot-ProductAttention.png" alt="attention"><br><strong>Scaled Dot-product Attention</strong>的输入包括$d_k$维的$keys$, $d_v$维的$values$和$queries$。通过$Attention(Q, K, V) = softmax(\frac{QK^T}{\sqrt{d_k}})V$得到点积结果</p>
+<h4 id="Multi-Head-Attention"><a href="#Multi-Head-Attention" class="headerlink" title="Multi-Head Attention"></a>Multi-Head Attention</h4><p>对<em>q</em>, <em>k</em>, <em>v</em>使用不同的可学习的线性projection；</p>
+<h4 id="Transformer-以三种方式使用multi-head-attention"><a href="#Transformer-以三种方式使用multi-head-attention" class="headerlink" title="Transformer 以三种方式使用multi-head attention"></a>Transformer 以三种方式使用<em>multi-head attention</em></h4><ul>
+<li><em>encoder-decoder attention</em>层中使用<em>multi-head attention</em>，<em>query</em>来自前一个解码器，<em>memeory key</em>和<em>value</em>来自编码起的输出；</li>
+<li><em>encoder</em>中的<em>self-attention layers</em>，所有的<em>query</em>, <em>key</em>和<em>value</em>都来自上一个编码器，使得编码器中的每个位置都可以参与到前一层编码器的所有位置；</li>
+<li><em>decoder</em>中<em>self-attention layers</em>的使用与<em>encoder</em>中相似<blockquote>
+<p>需要放置解码器中的左向信息流以保留自回归特性</p>
+</blockquote>
+</li>
 </ul>
-<h3 id="Shifted-Window-based-Self-Attention"><a href="#Shifted-Window-based-Self-Attention" class="headerlink" title="Shifted Window based Self-Attention"></a>Shifted Window based Self-Attention</h3><blockquote>
-<p><strong><a target="_blank" rel="noopener" href="https://paperswithcode.com/method/gelu">GELU</a></strong> 高斯误差线性单元(Gaussian Error Linear Uints)，激活函数</p>
-</blockquote>
+<h3 id="Position-wise-Feed-Forward-Networks"><a href="#Position-wise-Feed-Forward-Networks" class="headerlink" title="Position-wise Feed-Forward Networks"></a>Position-wise Feed-Forward Networks</h3><p><em>transformer</em>在网络中使用了多个相同结构的全连接<em>feed-forward network</em>。<em>feed-forwardnetwork</em>包含两个线性层和<em>ReLU</em>激活函数。</p>
+<script type="math/tex; mode=display">FFN(x) = \max (0, xW_1 + b_1)W_2 + b_2</script><h3 id="Embedding-and-Softmax"><a href="#Embedding-and-Softmax" class="headerlink" title="Embedding and Softmax"></a>Embedding and Softmax</h3><p>使用<em>embeddings</em>将输入<em>token</em>和输出<em>token</em>转换为$d_{model}$维的向量；</p>
+<h3 id="Positional-Encoding"><a href="#Positional-Encoding" class="headerlink" title="Positional Encoding"></a>Positional Encoding</h3><p>由于<em>transformer</em>不包含循环或卷积结构，为了利用输入序列的位置信息，在编码器和解码器堆栈的底部对输入的<em>emdeddings</em>使用了<em>positional encoding</em>，并且<em>transformer</em>使用了<em>sine and cosine functions</em>:</p>
+<script type="math/tex; mode=display">PE_{(pod, 2i)} = \sin (pos / 10000^{(2i / d_{model}}))</script><script type="math/tex; mode=display">PE_{(pod, 2i)+1} = \cos (pos / 10000^{(2i / d_{model}}))</script><p>$pos$代表位置，$i$代表维度</p>
 
       
     </div>
@@ -427,8 +434,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2021/12/29/attention_is_all_you_need/" rel="next" title="Attention is All You Need">
-                <i class="fa fa-chevron-left"></i> Attention is All You Need
+              <a href="/2021/12/20/FeaturePyramid/" rel="next" title="Feature Pyramid">
+                <i class="fa fa-chevron-left"></i> Feature Pyramid
               </a>
             
           </div>
@@ -437,8 +444,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2022/01/02/git%E5%88%9B%E5%BB%BA%E5%88%86%E6%94%AF%E5%B9%B6%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6/" rel="prev" title="git 创建分支并上传文件">
-                git 创建分支并上传文件 <i class="fa fa-chevron-right"></i>
+              <a href="/2021/12/30/SwinTransformer%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" rel="prev" title="Swin Transformer">
+                Swin Transformer <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -581,7 +588,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Swin-Transformer-Hierarchical-Vision-Transformer-using-Shifted-Windows-CVPR-2021-Best-Paper-Mcrosoft"><span class="nav-number">1.</span> <span class="nav-text">Swin Transformer: Hierarchical Vision Transformer using Shifted Windows(CVPR 2021 Best Paper)(Mcrosoft)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Swin-Transformer%E7%9A%84%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84"><span class="nav-number">1.1.</span> <span class="nav-text">Swin Transformer的网络结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Shifted-Window-based-Self-Attention"><span class="nav-number">1.2.</span> <span class="nav-text">Shifted Window based Self-Attention</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Attention-is-All-You-Need-google-brain"><span class="nav-number">1.</span> <span class="nav-text">Attention is All You Need(google brain)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#transformer%E7%9A%84%E6%A8%A1%E5%9E%8B%E7%BB%93%E6%9E%84"><span class="nav-number">1.1.</span> <span class="nav-text">transformer的模型结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Attention"><span class="nav-number">1.2.</span> <span class="nav-text">Attention</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#transformer-%E6%8F%90%E5%87%BA%E4%BA%86%E4%B8%80%E7%A7%8D%E7%89%B9%E6%AE%8A%E7%9A%84%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6-Scaled-Dot-Product-Attention"><span class="nav-number">1.2.1.</span> <span class="nav-text">transformer 提出了一种特殊的注意力机制 Scaled Dot-Product Attention</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Multi-Head-Attention"><span class="nav-number">1.2.2.</span> <span class="nav-text">Multi-Head Attention</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Transformer-%E4%BB%A5%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F%E4%BD%BF%E7%94%A8multi-head-attention"><span class="nav-number">1.2.3.</span> <span class="nav-text">Transformer 以三种方式使用multi-head attention</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Position-wise-Feed-Forward-Networks"><span class="nav-number">1.3.</span> <span class="nav-text">Position-wise Feed-Forward Networks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Embedding-and-Softmax"><span class="nav-number">1.4.</span> <span class="nav-text">Embedding and Softmax</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Positional-Encoding"><span class="nav-number">1.5.</span> <span class="nav-text">Positional Encoding</span></a></li></ol></li></ol></div>
             
 
           </div>

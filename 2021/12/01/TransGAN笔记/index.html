@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/image/favicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="transformer,GAN," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="代码来源 https:&#x2F;&#x2F;github.com&#x2F;asarigun&#x2F;TransGAN TransGAN: Two Transformers Can Make One Strong GAN 网络结构 Generator部分MLP1234567891011121314151617class MLP(nn.Module):    def __init__(self, in_feat, hid_feat&#x3D;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TransGAN">
+<meta property="og:url" content="http://example.com/2021/12/01/TransGAN%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="日夜梦游备忘记">
+<meta property="og:description" content="代码来源 https:&#x2F;&#x2F;github.com&#x2F;asarigun&#x2F;TransGAN TransGAN: Two Transformers Can Make One Strong GAN 网络结构 Generator部分MLP1234567891011121314151617class MLP(nn.Module):    def __init__(self, in_feat, hid_feat&#x3D;">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2021/12/01/TransGAN%E7%AC%94%E8%AE%B0/TransGAN.png">
+<meta property="article:published_time" content="2021-12-01T15:30:12.000Z">
+<meta property="article:modified_time" content="2022-03-16T08:21:45.933Z">
+<meta property="article:author" content="日夜梦游">
+<meta property="article:tag" content="transformer">
+<meta property="article:tag" content="GAN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/12/01/TransGAN%E7%AC%94%E8%AE%B0/TransGAN.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://example.com/2021/12/01/TransGAN笔记/"/>
+
+
+
+
+
+  <title>TransGAN | 日夜梦游备忘记</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">日夜梦游备忘记</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-fa fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/01/TransGAN%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="日夜梦游备忘记">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">TransGAN</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-12-01T23:30:12+08:00">
+                2021-12-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/PaperNotes/" itemprop="url" rel="index">
+                    <span itemprop="name">PaperNotes</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>代码来源 <a target="_blank" rel="noopener" href="https://github.com/asarigun/TransGAN">https://github.com/asarigun/TransGAN</a></p>
+<h1 id="TransGAN-Two-Transformers-Can-Make-One-Strong-GAN"><a href="#TransGAN-Two-Transformers-Can-Make-One-Strong-GAN" class="headerlink" title="TransGAN: Two Transformers Can Make One Strong GAN"></a>TransGAN: Two Transformers Can Make One Strong GAN</h1></blockquote>
+<h2 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h2><p><img src="/2021/12/01/TransGAN%E7%AC%94%E8%AE%B0/TransGAN.png" alt="transgan"></p>
+<h2 id="Generator部分"><a href="#Generator部分" class="headerlink" title="Generator部分"></a>Generator部分</h2><h3 id="MLP"><a href="#MLP" class="headerlink" title="MLP"></a>MLP</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MLP</span>(<span class="params">nn.Module</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, in_feat, hid_feat=<span class="literal">None</span>, out_feat=<span class="literal">None</span>, dropout=<span class="number">0.</span></span>):</span></span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> hid_feat:</span><br><span class="line">            hid_feat = in_feat</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> out_feat:</span><br><span class="line">            out_feat = in_feat</span><br><span class="line">        self.fc1 = nn.Linear(in_fat, hid_feat)</span><br><span class="line">        self.act = nn.GELU()</span><br><span class="line">        self.fc2 = nn.Linear(hid_feat, out_feat)</span><br><span class="line">        self.droprateout = nn.Dropout(dropout)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, x</span>):</span></span><br><span class="line">        x = self.fc1(x)</span><br><span class="line">        x = self.act(x)</span><br><span class="line">        x = self.fc2(x)</span><br><span class="line">        <span class="keyword">return</span> self.droprateout(x)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1606.08415.pdf">GELU(Gussian Error Linear Units, 高斯线性误差线性单元)激活函数</a></p>
+<script type="math/tex; mode=display">xP(X\leq x) = x \Phi(x)=x\int_{-\infty}^x\frac{e^{-\frac{(X-\mu)^2}{2\sigma^2}}}{\sqrt{2\pi}\sigma} \rm d x</script><p>$\Phi(x)$指的是$x$的高斯正态分布的累计分布<br>并且在每次输入TranformerEncoder之前加上一个可学习的<strong>位置embedding</strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">self.positional_embedding_1 = nn.Parameter(torch.zeros(<span class="number">1</span>, (<span class="number">8</span> ** <span class="number">2</span>), <span class="number">384</span>)， requires_grad=<span class="literal">True</span>)  <span class="comment"># 位置embedding</span></span><br><span class="line">x =  x + self.positional_embedding_1</span><br></pre></td></tr></table></figure></p>
+<h3 id="Transformer-Encoder"><a href="#Transformer-Encoder" class="headerlink" title="Transformer Encoder"></a>Transformer Encoder</h3><p>Transformer Encoder通过堆叠Encoder_Block组成，TransGAN使用了tranformer中一样的transformer encoder模块。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Encoder_Block</span>(<span class="params">nn.Module</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, dim, heads, mlp_ratio=<span class="number">4</span>, drop_rate=<span class="number">0.</span></span>):</span></span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        self.ln1 = nn.LayerNorm(dim)</span><br><span class="line">        self.attn = Attention(dim, heads, drop_rate, drop_rate)</span><br><span class="line">        self.ln2 = nn.LayerNorm(dim)</span><br><span class="line">        self.mlp = MLP(dim, dim * mlp_ratio, dropout=drop_rate)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, x</span>):</span></span><br><span class="line">        x1 = self.ln1(x)</span><br><span class="line">        x = x + self.attn(x1)</span><br><span class="line">        x2 = self.ln2(x)</span><br><span class="line">        x = x + self.mlp(x2)</span><br><span class="line">        <span class="keyword">return</span> x</span><br></pre></td></tr></table></figure></p>
+<h3 id="Encoder-模块中使用的attention机制："><a href="#Encoder-模块中使用的attention机制：" class="headerlink" title="Encoder 模块中使用的attention机制："></a>Encoder 模块中使用的attention机制：</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Attention</span>(<span class="params">nn.Module</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, dim, heads=<span class="number">4</span>, attention_dropout=<span class="number">0.</span>, proj_dropout=<span class="number">0.</span></span>):</span></span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        self.heads = heads</span><br><span class="line">        self.scale = <span class="number">1.</span> / dim ** <span class="number">0.5</span></span><br><span class="line"></span><br><span class="line">        self.qkv = nn.Linear(dim, dim * <span class="number">3</span>, bias=<span class="literal">False</span>)</span><br><span class="line">        self.attention_dropout = nn.Dropout(attention_dropout)</span><br><span class="line">        self.out = nn.Sequential(</span><br><span class="line">            nn.Linear(dim, dim),</span><br><span class="line">            nn.Dropout(proj_dropout)</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, x</span>):</span></span><br><span class="line">        b, n, c = x.shape</span><br><span class="line">        qkv = self.qkv(x).reshape(b, n, <span class="number">3</span>, self.heads, c // self.heads)</span><br><span class="line">        q, k, v = qkv.permute(<span class="number">2</span>, <span class="number">0</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">4</span>)</span><br><span class="line"></span><br><span class="line">        dot = (q @ k.transpose(-<span class="number">2</span>, -<span class="number">1</span>)) * self.scale</span><br><span class="line">        attn = dot.softmax(dim=-<span class="number">1</span>)</span><br><span class="line">        attn = self.attention_dropout(attn)</span><br><span class="line"></span><br><span class="line">        x = (attn @ v).transpose(<span class="number">1</span>, <span class="number">2</span>).reshape(b, n, c)</span><br><span class="line">        x = self.out(x)</span><br><span class="line">        <span class="keyword">return</span> x</span><br></pre></td></tr></table></figure>
+<h3 id="TransGAN使用PixelShuffle进行上采样"><a href="#TransGAN使用PixelShuffle进行上采样" class="headerlink" title="TransGAN使用PixelShuffle进行上采样"></a>TransGAN使用<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1609.05158">PixelShuffle</a>进行上采样</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">UpSampling</span>(<span class="params">x, H, W</span>):</span></span><br><span class="line">    B, N, C = x.size()</span><br><span class="line">    <span class="keyword">assert</span> N == H * W</span><br><span class="line">    x = x.permute(<span class="number">0</span>, <span class="number">2</span>, <span class="number">1</span>)</span><br><span class="line">    x = x.view(-<span class="number">1</span>, C, H, W)</span><br><span class="line">    x = nn.PixelShuffle(<span class="number">2</span>)(x)</span><br><span class="line">    B, C, H, W = x.size()</span><br><span class="line">    x = x.view(-<span class="number">1</span>, C, H * W)</span><br><span class="line">    x = x.permute(<span class="number">0</span>, <span class="number">2</span>, <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">return</span> x, H, W</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="LinearFlattern部分将输入转换成输出图像"><a href="#LinearFlattern部分将输入转换成输出图像" class="headerlink" title="LinearFlattern部分将输入转换成输出图像"></a>LinearFlattern部分将输入转换成输出图像</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x = self.linear(x.permute(<span class="number">0</span>, <span class="number">2</span>, <span class="number">1</span>).view(-<span class="number">1</span>, self.dim // <span class="number">16</span>, H, W))</span><br></pre></td></tr></table></figure>
+<h3 id="Generator的定义"><a href="#Generator的定义" class="headerlink" title="Generator的定义"></a>Generator的定义</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Generator</span>(<span class="params">nn.Module</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;docstring for Generator&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, depth1=<span class="number">5</span>, depth2=<span class="number">4</span>, depth3=<span class="number">2</span>, initial_size=<span class="number">8</span>, dim=<span class="number">384</span>, heads=<span class="number">4</span>, mlp_ratio=<span class="number">4</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">                 drop_rate=<span class="number">0.</span></span>):</span>  <span class="comment"># ,device=device):</span></span><br><span class="line">        <span class="built_in">super</span>(Generator, self).__init__()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># self.device = device</span></span><br><span class="line">        self.initial_size = initial_size</span><br><span class="line">        self.dim = dim</span><br><span class="line">        self.depth1 = depth1</span><br><span class="line">        self.depth2 = depth2</span><br><span class="line">        self.depth3 = depth3</span><br><span class="line">        self.heads = heads</span><br><span class="line">        self.mlp_ratio = mlp_ratio</span><br><span class="line">        self.drop_rate = drop_rate</span><br><span class="line"></span><br><span class="line">        self.mlp = nn.Linear(<span class="number">1024</span>, (self.initial_size ** <span class="number">2</span>) * self.dim)</span><br><span class="line"></span><br><span class="line">        self.positional_embedding_1 = nn.Parameter(torch.zeros(<span class="number">1</span>, (<span class="number">8</span> ** <span class="number">2</span>), <span class="number">384</span>))</span><br><span class="line">        self.positional_embedding_2 = nn.Parameter(torch.zeros(<span class="number">1</span>, (<span class="number">8</span> * <span class="number">2</span>) ** <span class="number">2</span>, <span class="number">384</span> // <span class="number">4</span>))</span><br><span class="line">        self.positional_embedding_3 = nn.Parameter(torch.zeros(<span class="number">1</span>, (<span class="number">8</span> * <span class="number">4</span>) ** <span class="number">2</span>, <span class="number">384</span> // <span class="number">16</span>))</span><br><span class="line"></span><br><span class="line">        self.TransformerEncoder_encoder1 = TransformerEncoder(depth=self.depth1, dim=self.dim, heads=self.heads,</span><br><span class="line">                                                              mlp_ratio=self.mlp_ratio, drop_rate=self.drop_rate)</span><br><span class="line">        self.TransformerEncoder_encoder2 = TransformerEncoder(depth=self.depth2, dim=self.dim // <span class="number">4</span>, heads=self.heads,</span><br><span class="line">                                                              mlp_ratio=self.mlp_ratio, drop_rate=self.drop_rate)</span><br><span class="line">        self.TransformerEncoder_encoder3 = TransformerEncoder(depth=self.depth3, dim=self.dim // <span class="number">16</span>, heads=self.heads,</span><br><span class="line">                                                              mlp_ratio=self.mlp_ratio, drop_rate=self.drop_rate)</span><br><span class="line"></span><br><span class="line">        self.linear = nn.Sequential(nn.Conv2d(self.dim // <span class="number">16</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, noise</span>):</span></span><br><span class="line">        x = self.mlp(noise).view(-<span class="number">1</span>, self.initial_size ** <span class="number">2</span>, self.dim)</span><br><span class="line"></span><br><span class="line">        x = x + self.positional_embedding_1</span><br><span class="line">        H, W = self.initial_size, self.initial_size</span><br><span class="line">        x = self.TransformerEncoder_encoder1(x)</span><br><span class="line"></span><br><span class="line">        x, H, W = UpSampling(x, H, W)</span><br><span class="line">        x = x + self.positional_embedding_2</span><br><span class="line">        x = self.TransformerEncoder_encoder2(x)</span><br><span class="line"></span><br><span class="line">        x, H, W = UpSampling(x, H, W)</span><br><span class="line">        x = x + self.positional_embedding_3</span><br><span class="line"></span><br><span class="line">        x = self.TransformerEncoder_encoder3(x)</span><br><span class="line">        x = self.linear(x.permute(<span class="number">0</span>, <span class="number">2</span>, <span class="number">1</span>).view(-<span class="number">1</span>, self.dim // <span class="number">16</span>, H, W))</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> x</span><br></pre></td></tr></table></figure>
+<h2 id="Discriminator部分"><a href="#Discriminator部分" class="headerlink" title="Discriminator部分"></a>Discriminator部分</h2><p>图像在输入Discriminator之前需要先分成几个patch。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ImgPatches</span>(<span class="params">nn.Module</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, input_channel=<span class="number">3</span>, dim=<span class="number">768</span>, patch_size=<span class="number">4</span></span>):</span></span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        self.patch_embed = nn.Conv2d(input_channel, dim,</span><br><span class="line">                                     kernel_size=patch_size, stride=patch_size)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, img</span>):</span></span><br><span class="line">        patches = self.patch_embed(img).flatten(<span class="number">2</span>).transpose(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line">        <span class="keyword">return</span> patches</span><br></pre></td></tr></table></figure><br>并且加上一个<strong>class token</strong>作为最后判别器的分类结果。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self.class_embedding = nn.Parameter(torch.zeros(<span class="number">1</span>, <span class="number">1</span>, dim))</span><br></pre></td></tr></table></figure><br>为了保留位置信息，图片块在输入判别器时加上<strong>位置embedding</strong>。<br>判别器的TransformerEncoder结构与生成器基本一致。<br>所以Discriminator的代码部分如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Discriminator</span>(<span class="params">nn.Module</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, diff_aug, image_size=<span class="number">256</span>, patch_size=<span class="number">8</span>, input_channel=<span class="number">3</span>, num_classes=<span class="number">1</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">                 dim=<span class="number">384</span>, depth=<span class="number">7</span>, heads=<span class="number">4</span>, mlp_ratio=<span class="number">4</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">                 drop_rate=<span class="number">0.</span></span>):</span></span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        <span class="keyword">if</span> image_size % patch_size != <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">raise</span> ValueError(<span class="string">&#x27;Image size must be divisible by patch size.&#x27;</span>)</span><br><span class="line">        num_patches = (image_size // patch_size) ** <span class="number">2</span></span><br><span class="line">        self.diff_aug = diff_aug</span><br><span class="line">        self.patch_size = patch_size</span><br><span class="line">        self.depth = depth</span><br><span class="line">        <span class="comment"># Image patches and embedding layer</span></span><br><span class="line">        self.patches = ImgPatches(input_channel, dim, self.patch_size)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Embedding for patch position and class</span></span><br><span class="line">        self.positional_embedding = nn.Parameter(torch.zeros(<span class="number">1</span>, num_patches + <span class="number">1</span>, dim))</span><br><span class="line">        self.class_embedding = nn.Parameter(torch.zeros(<span class="number">1</span>, <span class="number">1</span>, dim))</span><br><span class="line">        nn.init.trunc_normal_(self.positional_embedding, std=<span class="number">0.2</span>)</span><br><span class="line">        nn.init.trunc_normal_(self.class_embedding, std=<span class="number">0.2</span>)</span><br><span class="line"></span><br><span class="line">        self.droprate = nn.Dropout(p=drop_rate)</span><br><span class="line">        self.TransfomerEncoder = TransformerEncoder(depth, dim, heads,</span><br><span class="line">                                                    mlp_ratio, drop_rate)</span><br><span class="line">        self.norm = nn.LayerNorm(dim)</span><br><span class="line">        self.out = nn.Linear(dim, num_classes)</span><br><span class="line">        self.apply(self._init_weights)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_init_weights</span>(<span class="params">self, m</span>):</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">isinstance</span>(m, nn.Linear):</span><br><span class="line">            nn.init.trunc_normal_(m.weight, std=<span class="number">.02</span>)</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">isinstance</span>(m, nn.Linear) <span class="keyword">and</span> m.bias <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">                nn.init.constant_(m.bias, <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">elif</span> <span class="built_in">isinstance</span>(m, nn.LayerNorm):</span><br><span class="line">            nn.init.constant_(m.bias, <span class="number">0</span>)</span><br><span class="line">            nn.init.constant_(m.weight, <span class="number">1.0</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, x</span>):</span></span><br><span class="line">        x = DiffAugment(x, self.diff_aug)</span><br><span class="line">        b = x.shape[<span class="number">0</span>]</span><br><span class="line">        cls_token = self.class_embedding.expand(b, -<span class="number">1</span>, -<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        x = self.patches(x)</span><br><span class="line">        x = torch.cat((cls_token, x), dim=<span class="number">1</span>)</span><br><span class="line">        x += self.positional_embedding</span><br><span class="line">        x = self.droprate(x)</span><br><span class="line">        x = self.TransfomerEncoder(x)</span><br><span class="line">        x = self.norm(x)</span><br><span class="line">        x = self.out(x[:, <span class="number">0</span>])</span><br><span class="line">        <span class="keyword">return</span> x</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/transformer/" rel="tag"><i class="fa fa-tag"></i> transformer</a>
+          
+            <a href="/tags/GAN/" rel="tag"><i class="fa fa-tag"></i> GAN</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/11/29/anaconda%E5%A1%AB%E5%9D%91/" rel="next" title="anaconda使用问题汇总">
+                <i class="fa fa-chevron-left"></i> anaconda使用问题汇总
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/12/10/ViT%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" rel="prev" title="ViT">
+                ViT <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7Carchive">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/QQQ27" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#TransGAN-Two-Transformers-Can-Make-One-Strong-GAN"><span class="nav-number">1.</span> <span class="nav-text">TransGAN: Two Transformers Can Make One Strong GAN</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84"><span class="nav-number">1.1.</span> <span class="nav-text">网络结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Generator%E9%83%A8%E5%88%86"><span class="nav-number">1.2.</span> <span class="nav-text">Generator部分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MLP"><span class="nav-number">1.2.1.</span> <span class="nav-text">MLP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Transformer-Encoder"><span class="nav-number">1.2.2.</span> <span class="nav-text">Transformer Encoder</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Encoder-%E6%A8%A1%E5%9D%97%E4%B8%AD%E4%BD%BF%E7%94%A8%E7%9A%84attention%E6%9C%BA%E5%88%B6%EF%BC%9A"><span class="nav-number">1.2.3.</span> <span class="nav-text">Encoder 模块中使用的attention机制：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TransGAN%E4%BD%BF%E7%94%A8PixelShuffle%E8%BF%9B%E8%A1%8C%E4%B8%8A%E9%87%87%E6%A0%B7"><span class="nav-number">1.2.4.</span> <span class="nav-text">TransGAN使用PixelShuffle进行上采样</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LinearFlattern%E9%83%A8%E5%88%86%E5%B0%86%E8%BE%93%E5%85%A5%E8%BD%AC%E6%8D%A2%E6%88%90%E8%BE%93%E5%87%BA%E5%9B%BE%E5%83%8F"><span class="nav-number">1.2.5.</span> <span class="nav-text">LinearFlattern部分将输入转换成输出图像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generator%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">1.2.6.</span> <span class="nav-text">Generator的定义</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Discriminator%E9%83%A8%E5%88%86"><span class="nav-number">1.3.</span> <span class="nav-text">Discriminator部分</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">日夜梦游</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
