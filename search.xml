@@ -73,27 +73,6 @@
       </tags>
   </entry>
   <entry>
-    <title>anaconda使用问题汇总</title>
-    <url>/2021/11/29/anaconda%E5%A1%AB%E5%9D%91/</url>
-    <content><![CDATA[<h3 id="conda-安装库时出现proxy问题"><a href="#conda-安装库时出现proxy问题" class="headerlink" title="conda 安装库时出现proxy问题"></a>conda 安装库时出现proxy问题</h3><h4 id="方法一：关闭本机网络代理"><a href="#方法一：关闭本机网络代理" class="headerlink" title="方法一：关闭本机网络代理"></a>方法一：关闭本机网络代理</h4><h4 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h4><p>修改~目录下的<code>.condarc</code>文件，添加或者修改<code>proxy_server</code>参数，添加格式如下<span id="more"></span><br><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">proxy_servers:</span><br><span class="line">    http: http://127.0.0.1:8888</span><br><span class="line">    https: http://127.0.0.1:8888</span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p>! https: http 而不是https</p>
-<p>配置socks5代理：<br><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">proxy_servers:</span><br><span class="line">  http: socks5://127.0.0.1:1089</span><br><span class="line">  https: socks5://127.0.0.1:1089</span><br></pre></td></tr></table></figure><br>注意不要用<code>tab</code>键，而是使用四个空格，<code>https</code>和<code>http</code>后有一空格。代理ip地址为本机的<code>http</code>和<code>https</code>代理ip及端口，而不是远程服务器的ip和端口。</p>
-</blockquote>
-<h4 id="方法三"><a href="#方法三" class="headerlink" title="方法三"></a>方法三</h4><p><code>env  | grep -i &quot;_PROXY&quot;</code> 查看环境变量<br><code>unset http_proxy &amp;&amp; https_proxy &amp;&amp; HTTP_PROXY &amp;&amp; HTTPS_PROXY</code>  并且<code>export all_proxy=&quot;socks://127.0.01.:1088&quot;</code>，注释<code>.condarc</code>文件中的proxy_server设置,即可。<br>未关闭本机网络代理。</p>
-<blockquote>
-<p>不确定<code>unset...</code>和<code>export...</code>两个命令之间是否存在关联 </p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>环境配置</category>
-      </categories>
-      <tags>
-        <tag>anaconda</tag>
-        <tag>conda</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>ViT</title>
     <url>/2021/12/10/ViT%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<h2 id="An-Image-is-Worth-16x16-Words-Transformer-for-Image-Recognition-at-Scale-Google-Brain"><a href="#An-Image-is-Worth-16x16-Words-Transformer-for-Image-Recognition-at-Scale-Google-Brain" class="headerlink" title="An Image is Worth 16x16 Words: Transformer for Image Recognition at Scale(Google Brain)"></a><a href="https://github.com/google-research/vision_transformer">An Image is Worth 16x16 Words: Transformer for Image Recognition at Scale(Google Brain)</a></h2><blockquote>
@@ -119,6 +98,27 @@
       </categories>
       <tags>
         <tag>transformer</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>anaconda使用问题汇总</title>
+    <url>/2021/11/29/anaconda%E5%A1%AB%E5%9D%91/</url>
+    <content><![CDATA[<h3 id="conda-安装库时出现proxy问题"><a href="#conda-安装库时出现proxy问题" class="headerlink" title="conda 安装库时出现proxy问题"></a>conda 安装库时出现proxy问题</h3><h4 id="方法一：关闭本机网络代理"><a href="#方法一：关闭本机网络代理" class="headerlink" title="方法一：关闭本机网络代理"></a>方法一：关闭本机网络代理</h4><h4 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h4><p>修改~目录下的<code>.condarc</code>文件，添加或者修改<code>proxy_server</code>参数，添加格式如下<span id="more"></span><br><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">proxy_servers:</span><br><span class="line">    http: http://127.0.0.1:8888</span><br><span class="line">    https: http://127.0.0.1:8888</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>! https: http 而不是https</p>
+<p>配置socks5代理：<br><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">proxy_servers:</span><br><span class="line">  http: socks5://127.0.0.1:1089</span><br><span class="line">  https: socks5://127.0.0.1:1089</span><br></pre></td></tr></table></figure><br>注意不要用<code>tab</code>键，而是使用四个空格，<code>https</code>和<code>http</code>后有一空格。代理ip地址为本机的<code>http</code>和<code>https</code>代理ip及端口，而不是远程服务器的ip和端口。</p>
+</blockquote>
+<h4 id="方法三"><a href="#方法三" class="headerlink" title="方法三"></a>方法三</h4><p><code>env  | grep -i &quot;_PROXY&quot;</code> 查看环境变量<br><code>unset http_proxy &amp;&amp; https_proxy &amp;&amp; HTTP_PROXY &amp;&amp; HTTPS_PROXY</code>  并且<code>export all_proxy=&quot;socks://127.0.01.:1088&quot;</code>，注释<code>.condarc</code>文件中的proxy_server设置,即可。<br>未关闭本机网络代理。</p>
+<blockquote>
+<p>不确定<code>unset...</code>和<code>export...</code>两个命令之间是否存在关联 </p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>环境配置</category>
+      </categories>
+      <tags>
+        <tag>anaconda</tag>
+        <tag>conda</tag>
       </tags>
   </entry>
   <entry>
@@ -178,33 +178,6 @@ git push origin :lq ## 删除远程分支
       </tags>
   </entry>
   <entry>
-    <title>ubuntu 迁移conda虚拟环境</title>
-    <url>/2021/10/04/linux%20%E8%BF%81%E7%A7%BBanaconda%20%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/</url>
-    <content><![CDATA[<blockquote>
-<p>两台计算机均为ubuntu系统，远程服务器无法使用http协议<br> 两台不同操作系统的环境迁移使用yaml文件</p>
-<h3 id="conda-clone"><a href="#conda-clone" class="headerlink" title="conda clone"></a>conda clone</h3><ul>
-<li>本地计算机，直接clone本地文件夹 /anaconda3/pkgs 和/anaconda3/envs/ my_env至远程服务器的相应文件夹；<span id="more"></span></li>
-<li>远程服务器上，<code>conda create -n my_env --clone  my_env_path --offline</code> 发生HTTPERROR</li>
-</ul>
-<p>设定了 —offline 安装依然发生HTTP ERROR，为conda 版本bug</p>
-</blockquote>
-<h4 id="conda-pack-and-unpack-有效"><a href="#conda-pack-and-unpack-有效" class="headerlink" title="conda pack and unpack(有效)"></a>conda pack and unpack(有效)</h4><ul>
-<li>本地计算机上，在base环境下（保证各个子环境都可以使用）<code>conda install  - c conda-forge conda-pack</code>或者<code>pip install conda-pack</code></li>
-<li><code>conda activate my_env</code>，打包本地虚拟环境 <code>conda-pack</code> 得到my_env.tar.gz，讲my_env.tar.gz传输到远程服务器</li>
-<li>在远程服务器上解压，<code>tar -xf my_env.tar.gz -C ~/anaconda3/envs/my_env</code>，激活虚拟环境 <code>source ~/anaconda3/envs/my_env/bin/activate</code></li>
-</ul>
-<blockquote>
-<p>解压过程出现<code>tar my_env.tar.gz ~/anaconda3/envs/my_env</code> 出现<br>tar: xx: Not FOund in archive ; tar: Exiting with failure status due to previous errors 错误<br>原因是因为压缩文件使用的相对路径，在当前目录下找不到/usr目录，通过使用<code>-C</code>指定解压目录可解决此问题<br><code>tar -zxvf my_env.tar.gz -C ~/anaconda3/envs/my_env</code></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>环境配置</category>
-      </categories>
-      <tags>
-        <tag>conda</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>blog搭建过程备忘</title>
     <url>/2021/11/27/hexo+github%E6%90%AD%E5%BB%BAblog/</url>
     <content><![CDATA[<p>本地环境配置参考了<a href="https://segmentfault.com/a/1190000017986794">blog</a></p>
@@ -229,6 +202,33 @@ git push origin :lq ## 删除远程分支
       <tags>
         <tag>hexo</tag>
         <tag>博客搭建</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ubuntu 迁移conda虚拟环境</title>
+    <url>/2021/10/04/linux%20%E8%BF%81%E7%A7%BBanaconda%20%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/</url>
+    <content><![CDATA[<blockquote>
+<p>两台计算机均为ubuntu系统，远程服务器无法使用http协议<br> 两台不同操作系统的环境迁移使用yaml文件</p>
+<h3 id="conda-clone"><a href="#conda-clone" class="headerlink" title="conda clone"></a>conda clone</h3><ul>
+<li>本地计算机，直接clone本地文件夹 /anaconda3/pkgs 和/anaconda3/envs/ my_env至远程服务器的相应文件夹；<span id="more"></span></li>
+<li>远程服务器上，<code>conda create -n my_env --clone  my_env_path --offline</code> 发生HTTPERROR</li>
+</ul>
+<p>设定了 —offline 安装依然发生HTTP ERROR，为conda 版本bug</p>
+</blockquote>
+<h4 id="conda-pack-and-unpack-有效"><a href="#conda-pack-and-unpack-有效" class="headerlink" title="conda pack and unpack(有效)"></a>conda pack and unpack(有效)</h4><ul>
+<li>本地计算机上，在base环境下（保证各个子环境都可以使用）<code>conda install  - c conda-forge conda-pack</code>或者<code>pip install conda-pack</code></li>
+<li><code>conda activate my_env</code>，打包本地虚拟环境 <code>conda-pack</code> 得到my_env.tar.gz，讲my_env.tar.gz传输到远程服务器</li>
+<li>在远程服务器上解压，<code>tar -xf my_env.tar.gz -C ~/anaconda3/envs/my_env</code>，激活虚拟环境 <code>source ~/anaconda3/envs/my_env/bin/activate</code></li>
+</ul>
+<blockquote>
+<p>解压过程出现<code>tar my_env.tar.gz ~/anaconda3/envs/my_env</code> 出现<br>tar: xx: Not FOund in archive ; tar: Exiting with failure status due to previous errors 错误<br>原因是因为压缩文件使用的相对路径，在当前目录下找不到/usr目录，通过使用<code>-C</code>指定解压目录可解决此问题<br><code>tar -zxvf my_env.tar.gz -C ~/anaconda3/envs/my_env</code></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>环境配置</category>
+      </categories>
+      <tags>
+        <tag>conda</tag>
       </tags>
   </entry>
   <entry>
