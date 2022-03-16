@@ -3,8 +3,7 @@
   <entry>
     <title>Feature Pyramid</title>
     <url>/2021/12/20/FeaturePyramid/</url>
-    <content><![CDATA[<h2 id="Feature-Pyramid-amp-amp-GAN"><a href="#Feature-Pyramid-amp-amp-GAN" class="headerlink" title="Feature Pyramid &amp;&amp; GAN"></a>Feature Pyramid &amp;&amp; GAN</h2><h3 id="An-Unsupervised-Learning-Based-Approach-for-Automated-Defect-Inspection-on-Textured-Surfaces-2018-91"><a href="#An-Unsupervised-Learning-Based-Approach-for-Automated-Defect-Inspection-on-Textured-Surfaces-2018-91" class="headerlink" title="An Unsupervised-Learning-Based Approach for Automated Defect Inspection on Textured Surfaces[2018, 91]"></a>An Unsupervised-Learning-Based Approach for Automated Defect Inspection on Textured Surfaces[2018, 91]</h3><p>像素级（8x8邻域作为patch进行重构，得到残差—-全局特征？）二分类任务</p>
-<p>网络结构(来源：<a href="https://blog.csdn.net/hhy_csdn/article/details/84679448#commentBox">https://blog.csdn.net/hhy_csdn/article/details/84679448#commentBox</a>)<br><img src="https://img-blog.csdnimg.cn/20181203175011695.?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hoeV9jc2Ru,size_16,color_FFFFFF,t_70" alt="avatar"></p>
+    <content><![CDATA[<h2 id="Feature-Pyramid-amp-amp-GAN"><a href="#Feature-Pyramid-amp-amp-GAN" class="headerlink" title="Feature Pyramid &amp;&amp; GAN"></a>Feature Pyramid &amp;&amp; GAN</h2><h3 id="An-Unsupervised-Learning-Based-Approach-for-Automated-Defect-Inspection-on-Textured-Surfaces-2018-91"><a href="#An-Unsupervised-Learning-Based-Approach-for-Automated-Defect-Inspection-on-Textured-Surfaces-2018-91" class="headerlink" title="An Unsupervised-Learning-Based Approach for Automated Defect Inspection on Textured Surfaces[2018, 91]"></a>An Unsupervised-Learning-Based Approach for Automated Defect Inspection on Textured Surfaces[2018, 91]</h3><p>像素级（8x8邻域作为patch进行重构，得到残差—-全局特征？）二分类任务<br><span id="more"></span><br>网络结构(来源：<a href="https://blog.csdn.net/hhy_csdn/article/details/84679448#commentBox">https://blog.csdn.net/hhy_csdn/article/details/84679448#commentBox</a>)<br><img src="https://img-blog.csdnimg.cn/20181203175011695.?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hoeV9jc2Ru,size_16,color_FFFFFF,t_70" alt="avatar"></p>
 <h3 id="同组论文-Multiscale-Feature-Clustering-Based-Fully-Convolutional-Autoencoder-for-Fast-Accurate-Visual-Inspection-of-Texture-Surface-Defects-2019-33"><a href="#同组论文-Multiscale-Feature-Clustering-Based-Fully-Convolutional-Autoencoder-for-Fast-Accurate-Visual-Inspection-of-Texture-Surface-Defects-2019-33" class="headerlink" title="(同组论文)Multiscale Feature-Clustering-Based Fully Convolutional Autoencoder for Fast Accurate Visual Inspection of Texture Surface Defects[2019, 33]"></a>(同组论文)Multiscale Feature-Clustering-Based Fully Convolutional Autoencoder for Fast Accurate Visual Inspection of Texture Surface Defects[2019, 33]</h3><h4 id="MS-FCAE-的总体架构"><a href="#MS-FCAE-的总体架构" class="headerlink" title="MS-FCAE 的总体架构"></a>MS-FCAE 的总体架构</h4><p><img src="/2021/12/20/FeaturePyramid/MS-FCAE.png" alt="MS-FCAE"></p>
 <p>MS-FCAE有特征提取网络（几个卷积层）、多尺度FCAE网络哦和结果融合模块做成；<br>FCAE子网由一个编码模块、一个特征聚合模块和一个解码模块组成。</p>
 <p><img src="/2021/12/20/FeaturePyramid/FCAE.png" alt="FCAE"></p>
@@ -22,7 +21,7 @@
     <content><![CDATA[<h2 id="Swin-Transformer-Hierarchical-Vision-Transformer-using-Shifted-Windows-CVPR-2021-Best-Paper-Mcrosoft"><a href="#Swin-Transformer-Hierarchical-Vision-Transformer-using-Shifted-Windows-CVPR-2021-Best-Paper-Mcrosoft" class="headerlink" title="Swin Transformer: Hierarchical Vision Transformer using Shifted Windows(CVPR 2021 Best Paper)(Mcrosoft)"></a><a href="https://github.com/microsoft/Swin-Transformer">Swin Transformer: Hierarchical Vision Transformer using Shifted Windows(CVPR 2021 Best Paper)(Mcrosoft)</a></h2><blockquote>
 <p>新的计算机视觉网络backbone<br>图像域和语言域的差异</p>
 </blockquote>
-<p>Swin Transformer提出的分层tranformer使用Shifted Windows（滑动窗口）计算特征图。Shifted Windows 方案通过将自注意力计算限制在不重叠的本地窗口同时允许跨窗口连接来提高效率。</p>
+<p>Swin Transformer提出的分层tranformer使用Shifted Windows（滑动窗口）计算特征图。Shifted Windows 方案通过将自注意力计算限制在不重叠的本地窗口同时允许跨窗口连接来提高效率。<br><span id="more"></span></p>
 <h3 id="Swin-Transformer的网络结构"><a href="#Swin-Transformer的网络结构" class="headerlink" title="Swin Transformer的网络结构"></a>Swin Transformer的网络结构</h3><p><img src="/2021/12/30/SwinTransformer%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/transformer_architecture.png" alt="swin transformer architecture"></p>
 <ul>
 <li><strong>patch partition</strong>: 将图像分割成不重叠的系列块；</li>
@@ -52,7 +51,7 @@
     <content><![CDATA[<blockquote>
 <p>代码来源 <a href="https://github.com/asarigun/TransGAN">https://github.com/asarigun/TransGAN</a></p>
 <h1 id="TransGAN-Two-Transformers-Can-Make-One-Strong-GAN"><a href="#TransGAN-Two-Transformers-Can-Make-One-Strong-GAN" class="headerlink" title="TransGAN: Two Transformers Can Make One Strong GAN"></a>TransGAN: Two Transformers Can Make One Strong GAN</h1></blockquote>
-<h2 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h2><p><img src="/2021/12/01/TransGAN%E7%AC%94%E8%AE%B0/TransGAN.png" alt="transgan"></p>
+<h2 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h2><p><img src="/2021/12/01/TransGAN%E7%AC%94%E8%AE%B0/TransGAN.png" alt="transgan"><br><span id="more"></span></p>
 <h2 id="Generator部分"><a href="#Generator部分" class="headerlink" title="Generator部分"></a>Generator部分</h2><h3 id="MLP"><a href="#MLP" class="headerlink" title="MLP"></a>MLP</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MLP</span>(<span class="params">nn.Module</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, in_feat, hid_feat=<span class="literal">None</span>, out_feat=<span class="literal">None</span>, dropout=<span class="number">0.</span></span>):</span></span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> hid_feat:</span><br><span class="line">            hid_feat = in_feat</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> out_feat:</span><br><span class="line">            out_feat = in_feat</span><br><span class="line">        self.fc1 = nn.Linear(in_fat, hid_feat)</span><br><span class="line">        self.act = nn.GELU()</span><br><span class="line">        self.fc2 = nn.Linear(hid_feat, out_feat)</span><br><span class="line">        self.droprateout = nn.Dropout(dropout)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, x</span>):</span></span><br><span class="line">        x = self.fc1(x)</span><br><span class="line">        x = self.act(x)</span><br><span class="line">        x = self.fc2(x)</span><br><span class="line">        <span class="keyword">return</span> self.droprateout(x)</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p><a href="https://arxiv.org/pdf/1606.08415.pdf">GELU(Gussian Error Linear Units, 高斯线性误差线性单元)激活函数</a></p>
@@ -74,13 +73,34 @@
       </tags>
   </entry>
   <entry>
+    <title>anaconda使用问题汇总</title>
+    <url>/2021/11/29/anaconda%E5%A1%AB%E5%9D%91/</url>
+    <content><![CDATA[<h3 id="conda-安装库时出现proxy问题"><a href="#conda-安装库时出现proxy问题" class="headerlink" title="conda 安装库时出现proxy问题"></a>conda 安装库时出现proxy问题</h3><h4 id="方法一：关闭本机网络代理"><a href="#方法一：关闭本机网络代理" class="headerlink" title="方法一：关闭本机网络代理"></a>方法一：关闭本机网络代理</h4><h4 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h4><p>修改~目录下的<code>.condarc</code>文件，添加或者修改<code>proxy_server</code>参数，添加格式如下<span id="more"></span><br><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">proxy_servers:</span><br><span class="line">    http: http://127.0.0.1:8888</span><br><span class="line">    https: http://127.0.0.1:8888</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>! https: http 而不是https</p>
+<p>配置socks5代理：<br><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">proxy_servers:</span><br><span class="line">  http: socks5://127.0.0.1:1089</span><br><span class="line">  https: socks5://127.0.0.1:1089</span><br></pre></td></tr></table></figure><br>注意不要用<code>tab</code>键，而是使用四个空格，<code>https</code>和<code>http</code>后有一空格。代理ip地址为本机的<code>http</code>和<code>https</code>代理ip及端口，而不是远程服务器的ip和端口。</p>
+</blockquote>
+<h4 id="方法三"><a href="#方法三" class="headerlink" title="方法三"></a>方法三</h4><p><code>env  | grep -i &quot;_PROXY&quot;</code> 查看环境变量<br><code>unset http_proxy &amp;&amp; https_proxy &amp;&amp; HTTP_PROXY &amp;&amp; HTTPS_PROXY</code>  并且<code>export all_proxy=&quot;socks://127.0.01.:1088&quot;</code>，注释<code>.condarc</code>文件中的proxy_server设置,即可。<br>未关闭本机网络代理。</p>
+<blockquote>
+<p>不确定<code>unset...</code>和<code>export...</code>两个命令之间是否存在关联 </p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>环境配置</category>
+      </categories>
+      <tags>
+        <tag>anaconda</tag>
+        <tag>conda</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ViT</title>
     <url>/2021/12/10/ViT%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<h2 id="An-Image-is-Worth-16x16-Words-Transformer-for-Image-Recognition-at-Scale-Google-Brain"><a href="#An-Image-is-Worth-16x16-Words-Transformer-for-Image-Recognition-at-Scale-Google-Brain" class="headerlink" title="An Image is Worth 16x16 Words: Transformer for Image Recognition at Scale(Google Brain)"></a><a href="https://github.com/google-research/vision_transformer">An Image is Worth 16x16 Words: Transformer for Image Recognition at Scale(Google Brain)</a></h2><blockquote>
 <p>Vision Transformer (ViT)</p>
 </blockquote>
 <h3 id="Model-Overview"><a href="#Model-Overview" class="headerlink" title="Model Overview"></a>Model Overview</h3><p><img src="/2021/12/10/ViT%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/ModelOverview.png" alt="ModelOverview"></p>
-<p>ViT将图像裁剪成固定尺寸的图像块，对图像块做线性的embedding，并且加入位置embedding，为了用于分类任务，对输入的图像块序列还加入了可学习的classification token。</p>
+<p>ViT将图像裁剪成固定尺寸的图像块，对图像块做线性的embedding，并且加入位置embedding，为了用于分类任务，对输入的图像块序列还加入了可学习的classification token。<br><span id="more"></span></p>
 <blockquote>
 <p>TODO： image embedding</p>
 </blockquote>
@@ -102,36 +122,15 @@
       </tags>
   </entry>
   <entry>
-    <title>anaconda使用问题汇总</title>
-    <url>/2021/11/29/anaconda%E5%A1%AB%E5%9D%91/</url>
-    <content><![CDATA[<h3 id="conda-安装库时出现proxy问题"><a href="#conda-安装库时出现proxy问题" class="headerlink" title="conda 安装库时出现proxy问题"></a>conda 安装库时出现proxy问题</h3><h4 id="方法一：关闭本机网络代理"><a href="#方法一：关闭本机网络代理" class="headerlink" title="方法一：关闭本机网络代理"></a>方法一：关闭本机网络代理</h4><h4 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h4><p>修改~目录下的<code>.condarc</code>文件，添加或者修改<code>proxy_server</code>参数，添加格式如下<br><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">proxy_servers:</span><br><span class="line">    http: http://127.0.0.1:8888</span><br><span class="line">    https: http://127.0.0.1:8888</span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p>! https: http 而不是https</p>
-<p>配置socks5代理：<br><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">proxy_servers:</span><br><span class="line">  http: socks5://127.0.0.1:1089</span><br><span class="line">  https: socks5://127.0.0.1:1089</span><br></pre></td></tr></table></figure><br>注意不要用<code>tab</code>键，而是使用四个空格，<code>https</code>和<code>http</code>后有一空格。代理ip地址为本机的<code>http</code>和<code>https</code>代理ip及端口，而不是远程服务器的ip和端口。</p>
-</blockquote>
-<h4 id="方法三"><a href="#方法三" class="headerlink" title="方法三"></a>方法三</h4><p><code>env  | grep -i &quot;_PROXY&quot;</code> 查看环境变量<br><code>unset http_proxy &amp;&amp; https_proxy &amp;&amp; HTTP_PROXY &amp;&amp; HTTPS_PROXY</code>  并且<code>export all_proxy=&quot;socks://127.0.01.:1088&quot;</code>，注释<code>.condarc</code>文件中的proxy_server设置,即可。<br>未关闭本机网络代理。</p>
-<blockquote>
-<p>不确定<code>unset...</code>和<code>export...</code>两个命令之间是否存在关联 </p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>环境配置</category>
-      </categories>
-      <tags>
-        <tag>anaconda</tag>
-        <tag>conda</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Attention is All You Need</title>
     <url>/2021/12/29/attention_is_all_you_need/</url>
     <content><![CDATA[<h2 id="Attention-is-All-You-Need-google-brain"><a href="#Attention-is-All-You-Need-google-brain" class="headerlink" title="Attention is All You Need(google brain)"></a>Attention is All You Need(google brain)</h2><ul>
-<li>完全使用注意力机制学习输入输出之间的全局依赖（训练时允许并行计算，规避顺序计算的基本约束）</li>
-</ul>
-<h3 id="transformer的模型结构"><a href="#transformer的模型结构" class="headerlink" title="transformer的模型结构"></a>transformer的模型结构</h3><p><strong>总体结构如下</strong><br><img src="/2021/12/29/attention_is_all_you_need/transformer.png" alt="transformer"><br>transformer 包括<strong>Encoder</strong>和<strong>Decoder</strong>两大块。<br><strong>Encoder</strong>部分由$N=6$个相同的层组成，每块有两个子层；两个子层分别为<em>multi-head self-attention mechanism</em>和<em>fully connected feed-forward network</em>；并且两个子层都使用了<em>residual connection</em>和<em>layer normalization</em>，所以每个子层的输出为$LayerNorm(x+SubLayer(x))$。<br><strong>Decoder</strong>部分和<strong>Encoder</strong>相似，也有6个相同的层组成。不同的是，<strong>Decoder</strong>在每层中插入了一个新的子层<em>Multi-Head Attention</em>用于对<strong>Encoder</strong>的输出执行<em>Multi-Head Attention</em>。</p>
-<blockquote>
+<li>完全使用注意力机制学习输入输出之间的全局依赖（训练时允许并行计算，规避顺序计算的基本约束）<span id="more"></span>
+<h3 id="transformer的模型结构"><a href="#transformer的模型结构" class="headerlink" title="transformer的模型结构"></a>transformer的模型结构</h3><strong>总体结构如下</strong><br><img src="/2021/12/29/attention_is_all_you_need/transformer.png" alt="transformer"><br>transformer 包括<strong>Encoder</strong>和<strong>Decoder</strong>两大块。<br><strong>Encoder</strong>部分由$N=6$个相同的层组成，每块有两个子层；两个子层分别为<em>multi-head self-attention mechanism</em>和<em>fully connected feed-forward network</em>；并且两个子层都使用了<em>residual connection</em>和<em>layer normalization</em>，所以每个子层的输出为$LayerNorm(x+SubLayer(x))$。<br><strong>Decoder</strong>部分和<strong>Encoder</strong>相似，也有6个相同的层组成。不同的是，<strong>Decoder</strong>在每层中插入了一个新的子层<em>Multi-Head Attention</em>用于对<strong>Encoder</strong>的输出执行<em>Multi-Head Attention</em>。<blockquote>
 <p>修改了decoder堆栈中的自注意力子层，以防止位置关注后续位置，确保位置i的预测只能依赖与小于i位置的已知输出?</p>
 </blockquote>
+</li>
+</ul>
 <h3 id="Attention"><a href="#Attention" class="headerlink" title="Attention"></a>Attention</h3><h4 id="transformer-提出了一种特殊的注意力机制-Scaled-Dot-Product-Attention"><a href="#transformer-提出了一种特殊的注意力机制-Scaled-Dot-Product-Attention" class="headerlink" title="transformer 提出了一种特殊的注意力机制 Scaled Dot-Product Attention"></a>transformer 提出了一种特殊的注意力机制 Scaled Dot-Product Attention</h4><blockquote>
 <p>两种常用的注意力函数为<em>additive attention</em>和<em>dot-product(multi-plicative) attention</em>; </p>
 </blockquote>
@@ -179,13 +178,41 @@ git push origin :lq ## 删除远程分支
       </tags>
   </entry>
   <entry>
+    <title>ubuntu 迁移conda虚拟环境</title>
+    <url>/2021/10/04/linux%20%E8%BF%81%E7%A7%BBanaconda%20%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/</url>
+    <content><![CDATA[<blockquote>
+<p>两台计算机均为ubuntu系统，远程服务器无法使用http协议<br> 两台不同操作系统的环境迁移使用yaml文件</p>
+<h3 id="conda-clone"><a href="#conda-clone" class="headerlink" title="conda clone"></a>conda clone</h3><ul>
+<li>本地计算机，直接clone本地文件夹 /anaconda3/pkgs 和/anaconda3/envs/ my_env至远程服务器的相应文件夹；<span id="more"></span></li>
+<li>远程服务器上，<code>conda create -n my_env --clone  my_env_path --offline</code> 发生HTTPERROR</li>
+</ul>
+<p>设定了 —offline 安装依然发生HTTP ERROR，为conda 版本bug</p>
+</blockquote>
+<h4 id="conda-pack-and-unpack-有效"><a href="#conda-pack-and-unpack-有效" class="headerlink" title="conda pack and unpack(有效)"></a>conda pack and unpack(有效)</h4><ul>
+<li>本地计算机上，在base环境下（保证各个子环境都可以使用）<code>conda install  - c conda-forge conda-pack</code>或者<code>pip install conda-pack</code></li>
+<li><code>conda activate my_env</code>，打包本地虚拟环境 <code>conda-pack</code> 得到my_env.tar.gz，讲my_env.tar.gz传输到远程服务器</li>
+<li>在远程服务器上解压，<code>tar -xf my_env.tar.gz -C ~/anaconda3/envs/my_env</code>，激活虚拟环境 <code>source ~/anaconda3/envs/my_env/bin/activate</code></li>
+</ul>
+<blockquote>
+<p>解压过程出现<code>tar my_env.tar.gz ~/anaconda3/envs/my_env</code> 出现<br>tar: xx: Not FOund in archive ; tar: Exiting with failure status due to previous errors 错误<br>原因是因为压缩文件使用的相对路径，在当前目录下找不到/usr目录，通过使用<code>-C</code>指定解压目录可解决此问题<br><code>tar -zxvf my_env.tar.gz -C ~/anaconda3/envs/my_env</code></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>环境配置</category>
+      </categories>
+      <tags>
+        <tag>conda</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>blog搭建过程备忘</title>
     <url>/2021/11/27/hexo+github%E6%90%AD%E5%BB%BAblog/</url>
     <content><![CDATA[<p>本地环境配置参考了<a href="https://segmentfault.com/a/1190000017986794">blog</a></p>
 <h2 id="本地环境配置"><a href="#本地环境配置" class="headerlink" title="本地环境配置"></a>本地环境配置</h2><h3 id="NodeJS"><a href="#NodeJS" class="headerlink" title="NodeJS"></a>NodeJS</h3><blockquote>
 <p>Hexo 基于Node.js驱动</p>
 </blockquote>
-<h3 id="git"><a href="#git" class="headerlink" title="git"></a>git</h3><h3 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git version</span><br><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
+<h3 id="git"><a href="#git" class="headerlink" title="git"></a>git</h3><span id="more"></span>
+<h3 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git version</span><br><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
 <h3 id="Hexo安装及配置"><a href="#Hexo安装及配置" class="headerlink" title="Hexo安装及配置"></a>Hexo安装及配置</h3><p><code>npm install -g hexo-cli</code>  </p>
 <h4 id="如果安装时发生代理错误：FetchError"><a href="#如果安装时发生代理错误：FetchError" class="headerlink" title="如果安装时发生代理错误：FetchError"></a>如果安装时发生代理错误：FetchError</h4><p>换源：<code>npm config set registry https://registry.npm.taobao.org</code><br>清除代理： <code>npm config set proxy null</code>; <code>npm config set https-proxy null</code></p>
 <p>安装完成后，执行下列命令，在指定文件夹中新建文件；<br><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo init myblog</span><br><span class="line">cd myblog</span><br><span class="line">npm install </span><br></pre></td></tr></table></figure><br>生成的文件夹目录如下；<br><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.</span><br><span class="line">├── _config.yml # 网站的配置信息，您可以在此配置大部分的参数。 </span><br><span class="line">├── package.json</span><br><span class="line">├── scaffolds # 模版文件夹</span><br><span class="line">├── source  # 资源文件夹，除 _posts 文件，其他以下划线_开头的文件或者文件夹不会被编译打包到public文件夹</span><br><span class="line">|   ├── _drafts # 草稿文件</span><br><span class="line">|   └── _posts # 文章Markdowm文件 </span><br><span class="line">└── themes  # 主题文件夹</span><br></pre></td></tr></table></figure><br>生成完成后，运行<code>hexo s</code>，在浏览器打开<a href="http://localhost:4000">http://localhost:4000</a> 即可预览效果</p>
@@ -209,10 +236,8 @@ git push origin :lq ## 删除远程分支
     <url>/2021/09/16/vs%20code%E9%85%8D%E7%BD%AE%E5%90%84%E7%A7%8D%E8%AF%AD%E8%A8%80%E7%8E%AF%E5%A2%83%E6%B1%87%E9%9B%86/</url>
     <content><![CDATA[<blockquote>
 <p>第一次打开vs code，首先安装chinese(/doge);</p>
-<h2 id="MarkDown-环境配置"><a href="#MarkDown-环境配置" class="headerlink" title="MarkDown 环境配置"></a>MarkDown 环境配置</h2><p>Markdown的配置十分简单，安装Markdown All in One 即可，为了更好的体验感，推荐安装Markdown Preview Github 和 Markdown Preview Enhanced。</p>
-</blockquote>
-<h2 id="Latex-环境配置"><a href="#Latex-环境配置" class="headerlink" title="Latex 环境配置"></a>Latex 环境配置</h2><h3 id="实现tex文件和pdf的正向和反向搜索"><a href="#实现tex文件和pdf的正向和反向搜索" class="headerlink" title="实现tex文件和pdf的正向和反向搜索"></a>实现tex文件和pdf的正向和反向搜索</h3><blockquote>
-<p><code>ctl+alt+j</code>打开外部浏览器<br>主要参考<a href="https://zhuanlan.zhihu.com/p/166523064">参考1</a>配置settings.json文件，同时参照<a href="https://blog.csdn.net/qq_24502469/article/details/114269806?spm=1001.2101.3001.6650.2&amp;utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7Edefault-2.no_search_link&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7Edefault-2.no_search_link">参考2</a>修改json文件中正向搜索的配置。<br><a href="https://blog.csdn.net/qq_31831923/article/details/105823101">参考3</a><br>反向搜索中注意修改sumatraPDF的设置</p>
+<h2 id="MarkDown-环境配置"><a href="#MarkDown-环境配置" class="headerlink" title="MarkDown 环境配置"></a>MarkDown 环境配置</h2><p>Markdown的配置十分简单，安装Markdown All in One 即可，为了更好的体验感，推荐安装Markdown Preview Github 和 Markdown Preview Enhanced。<br><span id="more"></span></p>
+<h2 id="Latex-环境配置"><a href="#Latex-环境配置" class="headerlink" title="Latex 环境配置"></a>Latex 环境配置</h2><h3 id="实现tex文件和pdf的正向和反向搜索"><a href="#实现tex文件和pdf的正向和反向搜索" class="headerlink" title="实现tex文件和pdf的正向和反向搜索"></a>实现tex文件和pdf的正向和反向搜索</h3><p><code>ctl+alt+j</code>打开外部浏览器<br>主要参考<a href="https://zhuanlan.zhihu.com/p/166523064">参考1</a>配置settings.json文件，同时参照<a href="https://blog.csdn.net/qq_24502469/article/details/114269806?spm=1001.2101.3001.6650.2&amp;utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7Edefault-2.no_search_link&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7Edefault-2.no_search_link">参考2</a>修改json文件中正向搜索的配置。<br><a href="https://blog.csdn.net/qq_31831923/article/details/105823101">参考3</a><br>反向搜索中注意修改sumatraPDF的设置</p>
 </blockquote>
 <ul>
 <li>正向搜索，固定源码中的光标<code>ctl+alt+j</code></li>
@@ -241,30 +266,15 @@ git push origin :lq ## 删除远程分支
       </tags>
   </entry>
   <entry>
-    <title>ubuntu 迁移conda虚拟环境</title>
-    <url>/2021/10/04/linux%20%E8%BF%81%E7%A7%BBanaconda%20%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/</url>
-    <content><![CDATA[<blockquote>
-<p>两台计算机均为ubuntu系统，远程服务器无法使用http协议<br> 两台不同操作系统的环境迁移使用yaml文件</p>
-<h3 id="conda-clone"><a href="#conda-clone" class="headerlink" title="conda clone"></a>conda clone</h3><ul>
-<li>本地计算机，直接clone本地文件夹 /anaconda3/pkgs 和/anaconda3/envs/my_env至远程服务器的相应文件夹；</li>
-<li>远程服务器上，<code>conda create -n my_env --clone  my_env_path --offline</code> 发生HTTPERROR</li>
-</ul>
-<p>设定了 —offline 安装依然发生HTTP ERROR，为conda 版本bug</p>
-</blockquote>
-<h4 id="conda-pack-and-unpack-有效"><a href="#conda-pack-and-unpack-有效" class="headerlink" title="conda pack and unpack(有效)"></a>conda pack and unpack(有效)</h4><ul>
-<li>本地计算机上，在base环境下（保证各个子环境都可以使用）<code>conda install  - c conda-forge conda-pack</code>或者<code>pip install conda-pack</code></li>
-<li><code>conda activate my_env</code>，打包本地虚拟环境 <code>conda-pack</code> 得到my_env.tar.gz，讲my_env.tar.gz传输到远程服务器</li>
-<li>在远程服务器上解压，<code>tar -xf my_env.tar.gz -C ~/anaconda3/envs/my_env</code>，激活虚拟环境 <code>source ~/anaconda3/envs/my_env/bin/activate</code></li>
-</ul>
-<blockquote>
-<p>解压过程出现<code>tar my_env.tar.gz ~/anaconda3/envs/my_env</code> 出现<br>tar: xx: Not FOund in archive ; tar: Exiting with failure status due to previous errors 错误<br>原因是因为压缩文件使用的相对路径，在当前目录下找不到/usr目录，通过使用<code>-C</code>指定解压目录可解决此问题<br><code>tar -zxvf my_env.tar.gz -C ~/anaconda3/envs/my_env</code></p>
-</blockquote>
+    <title>微软商店无法打开</title>
+    <url>/2022/01/30/%E5%BE%AE%E8%BD%AF%E5%95%86%E5%BA%97%E7%BD%91%E7%BB%9C%E5%8E%9F%E5%9B%A0%E6%97%A0%E6%B3%95%E6%89%93%E5%BC%80/</url>
+    <content><![CDATA[<p>microsoft store网络原因无法打开<br>开始菜单—&gt;网络和Internet—&gt;代理—&gt;开启自动检测设置，不使用设置脚本</p>
 ]]></content>
       <categories>
-        <category>环境配置</category>
+        <category>网络代理</category>
       </categories>
       <tags>
-        <tag>conda</tag>
+        <tag>微软商店</tag>
       </tags>
   </entry>
   <entry>
@@ -272,7 +282,7 @@ git push origin :lq ## 删除远程分支
     <url>/2021/07/14/%E6%9C%8D%E5%8A%A1%E5%99%A8ip%E6%88%96port%E8%A2%AB%E5%B0%81%E7%BB%B4%E6%8A%A4/</url>
     <content><![CDATA[<h2 id="梯子又挂了！！！"><a href="#梯子又挂了！！！" class="headerlink" title="梯子又挂了！！！"></a>梯子又挂了！！！</h2><p>租用vps搭建的v2ray用于科学上网，但是由于zz原因，每隔一两个月都会发生ip被封或者端口被封。</p>
 <p>可以使用<a href="http://port.ping.pe/">ip检测网站</a>判断是否使服务器的问题或者判断到底是ip被封还是port被封。  </p>
-<h3 id="port被封"><a href="#port被封" class="headerlink" title="port被封"></a>port被封</h3><p>如果只是端口被封，只需要重新开启一个端口，并且修改v2ray的配置文件（/etc/v2ray/config.json）即可；<br><code>ufw status</code> 查看已开启端口<br><code>ufw allow 123456</code> 打开端口<br><code>ufw enable</code>  开启防火墙<br><code>ufw reload</code>  重启防火墙<br><code>ufw status</code>  查看端口是否开放  </p>
+<h3 id="port被封"><a href="#port被封" class="headerlink" title="port被封"></a>port被封</h3><p>如果只是端口被封，只需要重新开启一个端口，并且修改v2ray的配置文件（/etc/v2ray/config.json）即可。  <span id="more"></span><br><code>ufw status</code> 查看已开启端口<br><code>ufw allow 123456</code> 打开端口<br><code>ufw enable</code>  开启防火墙<br><code>ufw reload</code>  重启防火墙<br><code>ufw status</code>  查看端口是否开放  </p>
 <blockquote>
 <p>修改端口后建议重启服务器</p>
 </blockquote>
@@ -290,18 +300,6 @@ git push origin :lq ## 删除远程分支
       </categories>
       <tags>
         <tag>网络代理</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>微软商店无法打开</title>
-    <url>/2022/01/30/%E5%BE%AE%E8%BD%AF%E5%95%86%E5%BA%97%E7%BD%91%E7%BB%9C%E5%8E%9F%E5%9B%A0%E6%97%A0%E6%B3%95%E6%89%93%E5%BC%80/</url>
-    <content><![CDATA[<p>microsoft store网络原因无法打开<br>开始菜单—&gt;网络和Internet—&gt;代理—&gt;开启自动检测设置，不使用设置脚本</p>
-]]></content>
-      <categories>
-        <category>网络代理</category>
-      </categories>
-      <tags>
-        <tag>微软商店</tag>
       </tags>
   </entry>
 </search>
