@@ -366,4 +366,22 @@ R\left(\alpha_{i} \mid x\right)&=\sum_{j=1}^{c} \lambda\left(\alpha_{i} \mid \om
         <tag>课程笔记</tag>
       </tags>
   </entry>
+  <entry>
+    <title>ssh 登录服务器相关</title>
+    <url>/2022/04/10/ssh%E7%99%BB%E5%BD%95%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9B%B8%E5%85%B3/</url>
+    <content><![CDATA[<h2 id="ssh-登录服务器使用别名"><a href="#ssh-登录服务器使用别名" class="headerlink" title="ssh 登录服务器使用别名"></a>ssh 登录服务器使用别名</h2><p>在 .ssh文件夹中创建config文件，写法如下<br><img src="/2022/04/10/ssh%E7%99%BB%E5%BD%95%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9B%B8%E5%85%B3/config.PNG" alt></p>
+<h2 id="配置免密登录远程服务器"><a href="#配置免密登录远程服务器" class="headerlink" title="配置免密登录远程服务器"></a>配置免密登录远程服务器</h2><h3 id="远程服务器端设置"><a href="#远程服务器端设置" class="headerlink" title="远程服务器端设置"></a>远程服务器端设置</h3><p>修改 /etc/ssh/sshd_config 文件<br><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 是否允许 root 远程登录</span><br><span class="line">PermitRootLogin yes</span><br><span class="line"></span><br><span class="line"># 密码登录是否打开</span><br><span class="line">PasswordAuthentication yes</span><br><span class="line"></span><br><span class="line"># 开启公钥认证</span><br><span class="line">RSAAuthentication yes # 这个参数可能没有 没关系</span><br><span class="line">PubkeyAuthentication yes</span><br><span class="line"></span><br><span class="line"># 存放登录用户公钥的文件位置</span><br><span class="line"># 位置就是登录用户名的家目录下的 .ssh</span><br><span class="line"># root 就是 /root/.ssh</span><br><span class="line"># foo 就是 /home/foo/.ssh</span><br><span class="line">AuthorizedKeysFile .ssh/authorized_keys</span><br></pre></td></tr></table></figure></p>
+<p>重启服务 <code>service sshd restart</code></p>
+<h3 id="添加公钥"><a href="#添加公钥" class="headerlink" title="添加公钥"></a>添加公钥</h3><p>将本地机器的公钥 id_rsa.pub 内容添加到服务器的 ~/.ssh/authorized_keys 中。</p>
+<blockquote>
+<p>直接将多个公钥添加到authorized_keys文件中可实现多台本地电脑免密登录</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>ssh</category>
+      </categories>
+      <tags>
+        <tag>ssh</tag>
+      </tags>
+  </entry>
 </search>
