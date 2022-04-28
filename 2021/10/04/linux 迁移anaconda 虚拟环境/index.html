@@ -79,12 +79,12 @@
 
 
 
-<meta name="description" content="两台计算机均为ubuntu系统，远程服务器无法使用http协议 两台不同操作系统的环境迁移使用yaml文件 conda clone 本地计算机，直接clone本地文件夹 &#x2F;anaconda3&#x2F;pkgs 和&#x2F;anaconda3&#x2F;envs&#x2F; my_env至远程服务器的相应文件夹；">
+<meta name="description" content="两台计算机均为ubuntu系统，远程服务器无法使用http协议 两台不同操作系统的环境迁移使用yaml文件  conda clone 本地计算机，直接clone本地文件夹 &#x2F;anaconda3&#x2F;pkgs 和&#x2F;anaconda3&#x2F;envs&#x2F; my_env至远程服务器的相应文件夹；">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ubuntu 迁移conda虚拟环境">
 <meta property="og:url" content="http://example.com/2021/10/04/linux%20%E8%BF%81%E7%A7%BBanaconda%20%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/index.html">
 <meta property="og:site_name" content="日夜梦游备忘记">
-<meta property="og:description" content="两台计算机均为ubuntu系统，远程服务器无法使用http协议 两台不同操作系统的环境迁移使用yaml文件 conda clone 本地计算机，直接clone本地文件夹 &#x2F;anaconda3&#x2F;pkgs 和&#x2F;anaconda3&#x2F;envs&#x2F; my_env至远程服务器的相应文件夹；">
+<meta property="og:description" content="两台计算机均为ubuntu系统，远程服务器无法使用http协议 两台不同操作系统的环境迁移使用yaml文件  conda clone 本地计算机，直接clone本地文件夹 &#x2F;anaconda3&#x2F;pkgs 和&#x2F;anaconda3&#x2F;envs&#x2F; my_env至远程服务器的相应文件夹；">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-10-04T05:24:36.000Z">
 <meta property="article:modified_time" content="2021-10-04T05:24:36.000Z">
@@ -380,10 +380,12 @@
       
         <blockquote>
 <p>两台计算机均为ubuntu系统，远程服务器无法使用http协议<br> 两台不同操作系统的环境迁移使用yaml文件</p>
+</blockquote>
 <h3 id="conda-clone"><a href="#conda-clone" class="headerlink" title="conda clone"></a>conda clone</h3><ul>
 <li>本地计算机，直接clone本地文件夹 /anaconda3/pkgs 和/anaconda3/envs/ my_env至远程服务器的相应文件夹；<span id="more"></span></li>
 <li>远程服务器上，<code>conda create -n my_env --clone  my_env_path --offline</code> 发生HTTPERROR</li>
 </ul>
+<blockquote>
 <p>设定了 —offline 安装依然发生HTTP ERROR，为conda 版本bug</p>
 </blockquote>
 <h4 id="conda-pack-and-unpack-有效"><a href="#conda-pack-and-unpack-有效" class="headerlink" title="conda pack and unpack(有效)"></a>conda pack and unpack(有效)</h4><ul>
