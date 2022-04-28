@@ -386,15 +386,15 @@
 <li>远程服务器上，<code>conda create -n my_env --clone  my_env_path --offline</code> 发生HTTPERROR</li>
 </ul>
 <blockquote>
-<p>设定了 —offline 安装依然发生HTTP ERROR，为conda 版本bug</p>
+<p>指定 <code>-offline</code>参数后，安装依然发生HTTP ERROR，为conda 版本bug</p>
 </blockquote>
-<h4 id="conda-pack-and-unpack-有效"><a href="#conda-pack-and-unpack-有效" class="headerlink" title="conda pack and unpack(有效)"></a>conda pack and unpack(有效)</h4><ul>
+<h3 id="conda-pack-and-unpack-有效"><a href="#conda-pack-and-unpack-有效" class="headerlink" title="conda pack and unpack(有效)"></a>conda pack and unpack(有效)</h3><ul>
 <li>本地计算机上，在base环境下（保证各个子环境都可以使用）<code>conda install  - c conda-forge conda-pack</code>或者<code>pip install conda-pack</code></li>
 <li><code>conda activate my_env</code>，打包本地虚拟环境 <code>conda-pack</code> 得到my_env.tar.gz，讲my_env.tar.gz传输到远程服务器</li>
 <li>在远程服务器上解压，<code>tar -xf my_env.tar.gz -C ~/anaconda3/envs/my_env</code>，激活虚拟环境 <code>source ~/anaconda3/envs/my_env/bin/activate</code></li>
 </ul>
 <blockquote>
-<p>解压过程出现<code>tar my_env.tar.gz ~/anaconda3/envs/my_env</code> 出现<br>tar: xx: Not FOund in archive ; tar: Exiting with failure status due to previous errors 错误<br>原因是因为压缩文件使用的相对路径，在当前目录下找不到/usr目录，通过使用<code>-C</code>指定解压目录可解决此问题<br><code>tar -zxvf my_env.tar.gz -C ~/anaconda3/envs/my_env</code></p>
+<p>解压过程出现<code>tar my_env.tar.gz ~/anaconda3/envs/my_env</code> 出现<br>tar: xx: Not Found in archive ; tar: Exiting with failure status due to previous errors 错误<br>原因是因为压缩文件使用的相对路径，在当前目录下找不到/usr目录，通过使用<code>-C</code>指定解压目录可解决此问题<br><code>tar -zxvf my_env.tar.gz -C ~/anaconda3/envs/my_env</code></p>
 </blockquote>
 
       
@@ -580,7 +580,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#conda-clone"><span class="nav-number">1.</span> <span class="nav-text">conda clone</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#conda-pack-and-unpack-%E6%9C%89%E6%95%88"><span class="nav-number">1.1.</span> <span class="nav-text">conda pack and unpack(有效)</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#conda-clone"><span class="nav-number">1.</span> <span class="nav-text">conda clone</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#conda-pack-and-unpack-%E6%9C%89%E6%95%88"><span class="nav-number">2.</span> <span class="nav-text">conda pack and unpack(有效)</span></a></li></ol></div>
             
 
           </div>
