@@ -219,7 +219,7 @@ git push origin :lq ## 删除远程分支
 </blockquote>
 <h3 id="conda-pack-and-unpack-有效"><a href="#conda-pack-and-unpack-有效" class="headerlink" title="conda pack and unpack(有效)"></a>conda pack and unpack(有效)</h3><ul>
 <li>本地计算机上，在base环境下（保证各个子环境都可以使用）<code>conda install  - c conda-forge conda-pack</code>或者<code>pip install conda-pack</code></li>
-<li><code>conda activate my_env</code>，打包本地虚拟环境 <code>conda-pack</code> 得到my_env.tar.gz，讲my_env.tar.gz传输到远程服务器</li>
+<li><code>conda activate my_env</code>，打包本地虚拟环境 <code>conda-pack</code> 得到 my_env.tar.gz（压缩包在当前命令行目录下），将 my_env.tar.gz传输到远程服务器</li>
 <li>在远程服务器上解压，<code>tar -xf my_env.tar.gz -C ~/anaconda3/envs/my_env</code>，激活虚拟环境 <code>source ~/anaconda3/envs/my_env/bin/activate</code></li>
 </ul>
 <blockquote>
@@ -384,6 +384,17 @@ R\left(\alpha_{i} \mid x\right)&=\sum_{j=1}^{c} \lambda\left(\alpha_{i} \mid \om
       </categories>
       <tags>
         <tag>ssh</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数据结构</title>
+    <url>/2021/07/14/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</url>
+    <content><![CDATA[<h1 id><a href="#" class="headerlink" title=" "></a> </h1>]]></content>
+      <categories>
+        <category>数据结构</category>
+      </categories>
+      <tags>
+        <tag>数据结构</tag>
       </tags>
   </entry>
 </search>

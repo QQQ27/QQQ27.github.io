@@ -390,7 +390,7 @@
 </blockquote>
 <h3 id="conda-pack-and-unpack-有效"><a href="#conda-pack-and-unpack-有效" class="headerlink" title="conda pack and unpack(有效)"></a>conda pack and unpack(有效)</h3><ul>
 <li>本地计算机上，在base环境下（保证各个子环境都可以使用）<code>conda install  - c conda-forge conda-pack</code>或者<code>pip install conda-pack</code></li>
-<li><code>conda activate my_env</code>，打包本地虚拟环境 <code>conda-pack</code> 得到my_env.tar.gz，讲my_env.tar.gz传输到远程服务器</li>
+<li><code>conda activate my_env</code>，打包本地虚拟环境 <code>conda-pack</code> 得到 my_env.tar.gz（压缩包在当前命令行目录下），将 my_env.tar.gz传输到远程服务器</li>
 <li>在远程服务器上解压，<code>tar -xf my_env.tar.gz -C ~/anaconda3/envs/my_env</code>，激活虚拟环境 <code>source ~/anaconda3/envs/my_env/bin/activate</code></li>
 </ul>
 <blockquote>
@@ -515,7 +515,7 @@
               
                 <a href="/archives/%7C%7Carchive">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -526,7 +526,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -537,7 +537,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
