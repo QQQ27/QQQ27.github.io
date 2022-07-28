@@ -87,6 +87,7 @@
 <meta property="og:description" content="An Image is Worth 16x16 Words: Transformer for Image Recognition at Scale(Google Brain) Vision Transformer (ViT)  Model Overview ViT将图像裁剪成固定尺寸的图像块，对图像块做线性的embedding，并且加入位置embedding，为了用于分类任务，对输入的图像块序列还">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/2021/12/10/ViT%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/ModelOverview.png">
+<meta property="og:image" content="http://example.com/2021/12/10/ViT%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/TransformerEncoder.png">
 <meta property="article:published_time" content="2021-12-10T15:30:12.000Z">
 <meta property="article:modified_time" content="2021-12-10T15:30:12.000Z">
 <meta property="article:author" content="日夜梦游">
@@ -389,15 +390,16 @@
 <p>TODO： image embedding</p>
 </blockquote>
 <h3 id="ViT"><a href="#ViT" class="headerlink" title="ViT"></a>ViT</h3><p>用下列公式表示ViT的工作机制</p>
-<script type="math/tex; mode=display">z_0 = [x_{class}; x_p^1 \mathbf{E}; x_p^2\mathbf{E}; \ldots ; x_p^N \mathbf{E}] + \mathbf{E}_{pos};  \qquad \mathbf{E} \in \mathbb{R}^{(P^2\cdot C)\cdot D}, \mathbf{E}_{pos} \in \mathbb{R}^{(N+1)\cdot D}</script><blockquote>
+<script type="math/tex; mode=display">z_0 = [x_{class}; x_p^1 \mathbf{E}; x_p^2\mathbf{E}; \ldots ; x_p^N \mathbf{E}] + \mathbf{E}_{pos};  \quad \mathbf{E} \in \mathbb{R}^{(P^2\cdot C)\cdot D}, \mathbf{E}_{pos} \in \mathbb{R}^{(N+1)\cdot D}</script><blockquote>
 <p>patch embedding操作, $z_0^0=x_{class}$为可学习的embedding, $\mathbf{E}_{pos}$为位置embedding。</p>
 </blockquote>
-<script type="math/tex; mode=display">z^{\prime}_{\mathcal{l}} = MSA(LN(z_{\mathcal{l}-1}) + z_{\mathcal{l}-1}); \qquad \mathcal{l} = 1, \ldots, L</script><blockquote>
+<script type="math/tex; mode=display">z^{\prime}_{\mathcal{l}} = MSA(LN(z_{\mathcal{l}-1}) + z_{\mathcal{l}-1}); \quad \mathcal{l} = 1, \ldots, L</script><blockquote>
 <p>Multiheaded self-attention(MSA); LayerNorm(LN)</p>
 </blockquote>
-<script type="math/tex; mode=display">z_{\mathcal{l}} = MLP(LN(z^{\prime})) + z^{\prime}_{\mathcal{l}}; \qquad \mathcal{l} = 1, \ldots , L</script><script type="math/tex; mode=display">y = LN(z^0_L)</script><p>ViT 的输入为1D的token embedding 序列，为了处理2D图像，现将图像reshape处理，$(P, P)$是每个图像块的分辨率，$N = HW /P^2$是产生的图像块的数量，也是transformer 的输入序列的长度， $C$是图像的通道数:</p>
-<script type="math/tex; mode=display">x \in \mathbb{R}^{H * W * C} \rightarrow x\in \mathbb{R}^{N * (P^2 \cdot C)}</script><p>由于transformer 在其所有层中使用恒定大小$D$的潜在向量，所有ViT将图像块展开，并使用可训练的线性投影映射将图像块投影到$D$维空间中，这个映射的结果即为patch embedding。<br>同时，transformer的输入序列加入了positon embedding 保留位置信息。加入一个可学习的类别embedding，其在tranformer encoder 的输出状态被认为是图像表征$y$。<br>classification head 由一个MLP和一层隐藏层（预训练时）/线性层（微调时）组成。<br>transformer encoder 的MLP包含两个具有GELU非线性的层。  </p>
-
+<script type="math/tex; mode=display">z_{\mathcal{l}} = MLP(LN(z^{\prime})) + z^{\prime}_{\mathcal{l}}; \quad \mathcal{l} = 1, \ldots , L</script><script type="math/tex; mode=display">y = LN(z^0_L)</script><p>ViT 的输入为1D的token embedding 序列，为了处理2D图像，现将图像reshape处理，$(P, P)$是每个图像块的分辨率，$N = HW /P^2$是产生的图像块的数量，也是transformer 的输入序列的长度， $C$是图像的通道数:</p>
+<script type="math/tex; mode=display">x \in \mathbb{R}^{H * W * C} \rightarrow x\in \mathbb{R}^{N * (P^2 \cdot C)}</script><p>由于transformer 在其所有层中使用恒定大小$D$的隐向量，所有ViT将图像块展开，并使用可训练的线性投影映射将图像块投影到$D$维空间中，这个映射的结果即为patch embedding。<br>同时，transformer的输入序列加入了positon embedding 保留位置信息。加入一个可学习的类别embedding，其在tranformer encoder 的输出状态被认为是图像表征$y$。<br>classification head 由一个MLP和一层隐藏层（预训练时）/线性层（微调时）组成。<br>transformer encoder 的MLP包含两个具有GELU非线性的层。  </p>
+<h2 id="Transformer-Encoder-代码实现"><a href="#Transformer-Encoder-代码实现" class="headerlink" title="Transformer Encoder 代码实现"></a>Transformer Encoder 代码实现</h2><p><img src="/2021/12/10/ViT%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/TransformerEncoder.png" alt="TransformerEncoder"></p>
+<h3 id="Norm-Part"><a href="#Norm-Part" class="headerlink" title="Norm Part"></a>Norm Part</h3><h3 id="Multi-Head-Attention-Part"><a href="#Multi-Head-Attention-Part" class="headerlink" title="Multi-Head Attention Part"></a>Multi-Head Attention Part</h3><h3 id="MLP-Part"><a href="#MLP-Part" class="headerlink" title="MLP Part"></a>MLP Part</h3>
       
     </div>
     
@@ -581,7 +583,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#An-Image-is-Worth-16x16-Words-Transformer-for-Image-Recognition-at-Scale-Google-Brain"><span class="nav-number">1.</span> <span class="nav-text">An Image is Worth 16x16 Words: Transformer for Image Recognition at Scale(Google Brain)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Model-Overview"><span class="nav-number">1.1.</span> <span class="nav-text">Model Overview</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ViT"><span class="nav-number">1.2.</span> <span class="nav-text">ViT</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#An-Image-is-Worth-16x16-Words-Transformer-for-Image-Recognition-at-Scale-Google-Brain"><span class="nav-number">1.</span> <span class="nav-text">An Image is Worth 16x16 Words: Transformer for Image Recognition at Scale(Google Brain)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Model-Overview"><span class="nav-number">1.1.</span> <span class="nav-text">Model Overview</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ViT"><span class="nav-number">1.2.</span> <span class="nav-text">ViT</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Transformer-Encoder-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-number">2.</span> <span class="nav-text">Transformer Encoder 代码实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Norm-Part"><span class="nav-number">2.1.</span> <span class="nav-text">Norm Part</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Multi-Head-Attention-Part"><span class="nav-number">2.2.</span> <span class="nav-text">Multi-Head Attention Part</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MLP-Part"><span class="nav-number">2.3.</span> <span class="nav-text">MLP Part</span></a></li></ol></li></ol></div>
             
 
           </div>
